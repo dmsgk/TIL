@@ -1,5 +1,3 @@
-<img src="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/7eebebcb7d51c07d3705267aec003883.w400.h400.jpg" alt="Amazon.com: Apple" style="zoom:10%;" />
-
 ## Asset Catalogs
 
 ### Asset Catalog
