@@ -140,12 +140,87 @@ do {
   - 아래의 두 가지 atomic 연산에 의해서만 접근 가능(p연산, v연산)
     - P(S) : 공유데이터를 획득하는 과정
     - V(S) : 다 사용하고 반납하는 과정
+- **Two types of semaphore**
+  - Counting semaphores
+    - 도메인이 0이상인 임의의 정수값
+    - 주로 resource counting에 사용
+  - Binary semaphores
+    - 0 또는 1 값만 가질 수 있는 semaphore
+    - 주로 mutual exclusion(lock/unlock)사용
 
 
 
-### Critical Section of n Processes
+#### Critical Section of n Processes
 
 - 앞에서처럼 프로그래머가 일일이 코딩을 하기보다 추상화된 자료구조를 주고, 프로그래머는 semaphore를 통해 프로그래밍을 하면 훨씬 간단하게 작성할 수 있음
 
+- ##### Busy-wait 방식의 구현 (=spin lock) 
+
+  ```c
+  // semaphore mutex; /* initially 1: 1개가 CS에 들어갈 수 있다.*/
   
+  do {
+    P(mutex);						/*If positive, dec & enter, otherwise wait*/
+    critical section
+    V(mutex);						/*Increment semaphore*/
+    remainder section
+    
+  }while (1);
+  ```
+  
+- ##### BlocK & Wakeup 방식의 구현(= sleep lock)
+
+  - Semaphore를 다음과 같이 정의
+
+    ```c
+    typedef struct {
+      int value;					/*semaphore*/
+      struct process *L;	/*process wait queue*/
+    } semaphore
+    ```
+    - p연산
+
+      ```c
+      S.value--;									/*prepare to enter*/
+      if (S.value < 0) {					/*negative,I cannot enter*/
+        add this process to S.L;
+        
+        block();
+      }
+      ```
+
+      자원의 여분이 있다면 획득, 그렇지 않으면 sleep상태(blocked)로 바뀐다.
+
+    - v연산
+
+      ````c
+      S.value++;
+      if (S.value <= 0) {
+        remove a process P from S.L;
+        
+        wakeup(P)
+      }
+      
+      //자원을 다 내놓았는데도 불구하고 그 값이 0이하라는 것은 이 프로세스를 기다리면서 잠들어있는 프로세스가 있다는 의미
+      ````
+
+      자원을 다 쓰고 반납하면서 잠들어있는 프로세스가 있다면 **깨워주는(wakeup)과정도 포함**되어 있다.
+
+- Which is Better?
+  - 보통은 block & wakeup이 효율적. 구체적으로는
+  - **Block/wakeup의 overhead vs Critical section 길이** 를 비교하여 결정한다.
+    - Critical section의 길이가 긴 경우 block/wakeup이 적당
+    - Critical section의 길이가 매우 짧은 경우 block/wakeup 오버헤드가 busy-wait 오버헤드보다 더 커질 수 있음
+
+
+
+#### Deadlock and Starvation
+
+- **Deadlock**
+  - 둘 이상의 프로세스가 서로 상대방에 의해 충족될 수 있는 event를 무한히 기다리는 현상
+  - ex) Dining- Philosophers Problem에서 모두가 왼쪽 젓가락을 집는 경우
+- **Starvation**
+  - Indefinite blocking : 프로세스가 suspend된 이유에 해당하는 세마포어 큐에서 빠져나갈 수 없는 현상
+
+
 
