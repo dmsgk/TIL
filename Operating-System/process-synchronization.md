@@ -246,7 +246,7 @@ do {
 - Synchronization으로 해결해야 하는 문제
   - 버퍼의 크기가 유한한 환경에서, 버퍼가 가득 찬 경우 생산자 프로세스는 자원이 생길 때까지 기다려야 한다. 소비자 프로세스는 빈 버퍼만 있는 경우 생산자 프로세스가 내용을 채워줄 때까지 기다려야 한다. 그 때 가용자원의 개수를 센다.
   - 동시에 공유버퍼를 접근하는 것을 막기 위에 lock을  걸고 풀고 하는 역할.
-- 해결책 ![스크린샷 2021-04-20 오후 4.20.25](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-20 오후 4.20.25.png)
+- 해결책 <img width="448" alt="스크린샷 2021-04-20 오후 4 20 25" src="https://user-images.githubusercontent.com/72622744/115398826-84785b00-a222-11eb-8749-838a0c750f7d.png">
 
 ### ☐Readers and Writers Problem
 
@@ -263,7 +263,7 @@ do {
   - 일단 writer가 db에 접근 중이면 reader들은 접근이 금지된다.
   - writer가 db에서 빠져나가야만 reader의 접근이 허용된다.
 
-  ![스크린샷 2021-04-20 오후 4.27.00](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-20 오후 4.27.00.png)
+  <img width="445" alt="스크린샷 2021-04-20 오후 4 27 00" src="https://user-images.githubusercontent.com/72622744/115398837-87734b80-a222-11eb-98f1-14b15172af02.png">
 
 ### ☐Dininig- Philosophers Problem
 
@@ -335,5 +335,5 @@ do {
 
 -  semaphre와 달리 lock을 걸 필요가 없다.
 
-- ![스크린샷 2021-04-20 오후 5.06.14](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-20 오후 5.06.14.png)
+- <img width="448" alt="스크린샷 2021-04-20 오후 5 06 14" src="https://user-images.githubusercontent.com/72622744/115398847-893d0f00-a222-11eb-8e7e-db27d6649ad5.png">
 
