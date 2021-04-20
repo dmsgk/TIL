@@ -95,7 +95,7 @@ cpu에서 running을 하다가  무엇을 읽어와야 한다면 (예를 들어 
 
 System call이나 interrupt 발생 시 반드시 context switch가 일어나는 것은 아님
 
-<img src="/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-06 오후 5.14.37.png" alt="스크린샷 2021-04-06 오후 5.14.37" style="zoom: 33%;" />
+<img width="935" alt="스크린샷 2021-04-06 오후 5 14 37" src="https://user-images.githubusercontent.com/72622744/115399828-8ee72480-a223-11eb-8838-2401780eb4c3.png">
 
 
 
@@ -109,8 +109,7 @@ System call이나 interrupt 발생 시 반드시 context switch가 일어나는 
   - I/O device의 처리를 기다리는 프로세스의 집합
 - 프로세스들은 각 큐를 오가며 수행된다.
 
-![OS - 스케줄링 큐(Scheduling Queue) : Queueing diagram : 네이버 블로그](https://lh3.googleusercontent.com/proxy/lHL3rC-4nANjvlN3BenhyF5uSQMeef_P8OFpy_CimVBuOWCnRfoCDbK8PEvTgvTjRtoWozQI8KZeObV5DAPR-ISkcC1yxkVUf4cZ4Ib0DWSvmyQ3suClaXSpVm7efAReL6iPQekzaR_JErUMZdmTc0sAyIneOuHd56Hx)
-
+![image](https://user-images.githubusercontent.com/72622744/115400276-09b03f80-a224-11eb-9788-09f6e5aad025.png)
 
 
 
