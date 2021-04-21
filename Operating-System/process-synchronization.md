@@ -228,7 +228,7 @@ do {
 
 ## Classical Problems of Synchronization
 
-### ☐Bounded-Buffer-Problem(Producer-Consumer Problem)
+### Bounded-Buffer-Problem(Producer-Consumer Problem)
 
 - producer process, consumer process 존재
   - producer process
@@ -243,12 +243,16 @@ do {
     3. Full buffer에서 데이터 꺼내고 buffer조작
     4. lock을 푼다
     5. Empty buffer 하나 증가
+  
 - Synchronization으로 해결해야 하는 문제
   - 버퍼의 크기가 유한한 환경에서, 버퍼가 가득 찬 경우 생산자 프로세스는 자원이 생길 때까지 기다려야 한다. 소비자 프로세스는 빈 버퍼만 있는 경우 생산자 프로세스가 내용을 채워줄 때까지 기다려야 한다. 그 때 가용자원의 개수를 센다.
   - 동시에 공유버퍼를 접근하는 것을 막기 위에 lock을  걸고 풀고 하는 역할.
-- 해결책 <img width="448" alt="스크린샷 2021-04-20 오후 4 20 25" src="https://user-images.githubusercontent.com/72622744/115398826-84785b00-a222-11eb-8749-838a0c750f7d.png">
+  
+- 해결책 
 
-### ☐Readers and Writers Problem
+   <img width="448" alt="스크린샷 2021-04-20 오후 4 20 25" src="https://user-images.githubusercontent.com/72622744/115398826-84785b00-a222-11eb-8749-838a0c750f7d.png">
+
+### Readers and Writers Problem
 
 - 읽는 프로세스와 쓰는 프로세스로 구성
 
@@ -265,7 +269,7 @@ do {
 
   <img width="445" alt="스크린샷 2021-04-20 오후 4 27 00" src="https://user-images.githubusercontent.com/72622744/115398837-87734b80-a222-11eb-98f1-14b15172af02.png">
 
-### ☐Dininig- Philosophers Problem
+### Dininig- Philosophers Problem
 
 - 철학자 다섯 명이 원탁에 앉아있음
 
@@ -335,5 +339,15 @@ do {
 
 -  semaphre와 달리 lock을 걸 필요가 없다.
 
-- <img width="448" alt="스크린샷 2021-04-20 오후 5 06 14" src="https://user-images.githubusercontent.com/72622744/115398847-893d0f00-a222-11eb-8e7e-db27d6649ad5.png">
+- Bounded-Buffer Problem을 monitor로 해결하는 코드
+
+    <img width="448" alt="스크린샷 2021-04-20 오후 5 06 14" src="https://user-images.githubusercontent.com/72622744/115398847-893d0f00-a222-11eb-8e7e-db27d6649ad5.png">
+
+- Dining Philosophers Problem
+
+![스크린샷 2021-04-21 오후 9.02.01](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-21 오후 9.02.01.png)
+
+
+
+
 
