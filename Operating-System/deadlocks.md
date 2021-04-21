@@ -113,4 +113,4 @@ available한 자원을 모두 주는 것이 아니라 deadlock의 위험성이 �
 
 가용자원만 가지고 최대요청을 충족시킬 수 없는 경우, 요청을 받아들이지 않고 기다리게 한다.
 
-![스크린샷 2021-04-21 오후 10.05.30](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-21 오후 10.05.30.png)
+<img width="503" alt="스크린샷 2021-04-21 오후 10 05 30" src="https://user-images.githubusercontent.com/72622744/115559285-8b6c9f80-a2ee-11eb-8a9f-f87f7f5f2f58.png">
