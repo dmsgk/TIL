@@ -129,7 +129,7 @@
 
     - Banker's Algorithm과 유사한 방법 활용
 
-    ![스크린샷 2021-04-22 오전 10.37.49](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-22 오전 10.37.49.png)
+    <img width="510" alt="스크린샷 2021-04-22 오전 10 37 49" src="https://user-images.githubusercontent.com/72622744/115645237-f94eb080-a35a-11eb-9a77-d676cd3c0ca0.png">
 
     - 가용자원으로 처리할 수 있는 요청이 있는지 살펴보 요청하지 않은 프로세스의 자원을 가용자원으로 합쳐놓고 가용자원으로 처리가능한지 확인하면서 문제가 발생하지 않고 끝까지 갈 수 있는지 확인
     - 현재 요청된 것이 없는 프로세스로에 할당된 자원이 반납된다고 가정
@@ -138,7 +138,7 @@
     - 요청을 다 받아들이는 시퀀스가 존재한다면 deadlock이 없다고 한다. 위의 예시는 deadlock이 아닌 상태.
     - 아래예시는 deadlock이 존재하는 경우
 
-    ![스크린샷 2021-04-22 오전 10.52.40](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-22 오전 10.52.40.png)
+    <img width="510" alt="스크린샷 2021-04-22 오전 10 52 40" src="https://user-images.githubusercontent.com/72622744/115645211-ee941b80-a35a-11eb-845d-648d6caa5d35.png">
 
 - Wait-for graph 알고리즘
 
@@ -151,7 +151,7 @@
     - Wait-for graph에 사이클이 존재하는지를 주기적으로 조사
     - O(n^2)
 
-  ![스크린샷 2021-04-22 오전 10.35.25](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-22 오전 10.35.25.png)
+  <img width="515" alt="스크린샷 2021-04-22 오전 10 35 25" src="https://user-images.githubusercontent.com/72622744/115645316-1be0c980-a35b-11eb-8c25-f4698a512d0d.png">
 
 - Recovery
   - **Process Termination**
