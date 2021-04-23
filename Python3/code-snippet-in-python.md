@@ -33,7 +33,7 @@ import sys
 data = list(map(int,sys.stdin.readline().split()))
 ```
 
-​	`list()`는 자료형을 리스트형으로 변환해주는 함수. `map()`은 맵 객체를 만드므로, 리스트형으로 바꿔주기 위해서 `list()`로 처리
+​	`map()`은 맵 객체를 만드므로, 리스트형으로 바꿔주기 위해서 `list()`로 처리
 
 - 임의의 개수의 정수를 n줄 입력받아 2차원 리스트에 저장할 때
 
@@ -67,9 +67,51 @@ print("".join(li))		# 'abc' 출력
 print("_".join(li))		# 'a_b_c' 출력
 ```
 
+같은 원리로, 리스트에 있는 숫자를 이어 출력하고자 할 때에는 문자열로 변환하여 동일하게 할 수 있다. 
+
+```python
+li = [1,2,3,4]
+str = " ".join(list(map(str,li)))
+print(str)  # 1 2 3 4 출력
+```
 
 
-### 
+
+## 2. 자주 사용하는 모듈
+
+- ### itertools
+
+  - **순열(Permutations)**
+
+  ```python
+  import itertools
+  
+  l1 = ["a","b","c"]
+  p = itertools.permutations(l1)
+  print(list(p))   # [('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]
+  ```
+
+  - **조합(Combinations)**
+
+  ```python
+  from itertools import combinations
+  
+  l2 = ["a","b","c"]
+  c = list(combinations(l1,2))
+  print(c)   # [('a', 'b'), ('a', 'c'), ('b', 'c')]
+  ```
+
+  - **map 함수를 사용하여, 보기 편하게 출력하기**
+
+    리스트 안의 튜플형태로 출력이 되는데, `map()`을 사용하여 다음과 같이 출력할 수 있다.
+
+  ```python
+  import itertools
+  
+  l1 = ["a","b","c"]
+  p = itertools.permutations(l1)
+  print(list(map("".join, p)))  # ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+  ```
 
 
 
