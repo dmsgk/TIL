@@ -35,7 +35,7 @@
     - 위 두 방식과 다르게 프로그램이 실행 중일 때에도 주소가 계속 바뀌므로.
   - 하드웨어적인 지원이 필요(e.g. base and limit registers, **MMU**)
 
-![스크린샷 2021-04-27 오후 5.06.09](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-27 오후 5.06.09.png)
+<img width="510" alt="스크린샷 2021-04-27 오후 5 06 09" src="https://user-images.githubusercontent.com/72622744/116235287-a0d34500-a798-11eb-91ac-ecd39bf51320.png">
 
 
 
@@ -57,14 +57,13 @@
 
     
 
-![스크린샷 2021-04-27 오후 5.26.47](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-27 오후 5.26.47.png)
+<img width="512" alt="스크린샷 2021-04-27 오후 5 26 47" src="https://user-images.githubusercontent.com/72622744/116235396-c5c7b800-a798-11eb-9c57-4481e9502256.png">
 
 - 가장 간단한 MMU는 base register와 limit register를 이용한 방법
   - base register(=relocation register)에는 프로그램의 시작위치를 저장해둔다.(14000) 주소변환을 할 때는 논리적 주소에 시작위치를 더해서 물리적 주소로 변환한다. 
   - limit register는 프로그램의 크기를 담고 있음. 프로그램 크기보다 더 큰 논리주소를 요청하여 다른 프로세스의 메모리를 보려는 악의적인 프로그램인지 확인하는 용도로 사용한다. 벗어나는 요청이면 trap이 걸려 cpu제어권이 운영체제에게 넘어감. 프로그램 크기 이내의 요청이라면 주소변환이 이루어진다. 
 
-![스크린샷 2021-04-27 오후 5.33.15](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-27 오후 5.33.15.png)
-
+<img width="512" alt="스크린샷 2021-04-27 오후 5 33 15" src="https://user-images.githubusercontent.com/72622744/116235534-f3146600-a798-11eb-8da5-237f5dd6e4f0.png">
 
 
 ## Some Terminologies
@@ -168,7 +167,7 @@
       - 할당공간
       - 가용공간(hole)
 
-![스크린샷 2021-04-27 오후 7.47.14](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-27 오후 7.47.14.png)
+<img width="515" alt="스크린샷 2021-04-27 오후 7 47 14" src="https://user-images.githubusercontent.com/72622744/116235634-1212f800-a799-11eb-8446-8ffb5258be02.png">
 
 - 외부조각:  분할이 프로그램 크기보다 작아서 생기는 조각
 - 내부조각: 분할의 크기가 프로그램크기보다 커서 남는 조각
