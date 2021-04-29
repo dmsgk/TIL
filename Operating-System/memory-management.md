@@ -1,3 +1,5 @@
+
+
 # Chap 8. Memory Management
 
 ## Logical vs Physical Address
@@ -7,8 +9,9 @@
   - 각 프로세스마다 0번지부터 시작
   - **cpu가 보는 주소는 logical address임**
 - Physical address
-  - 메모리에 실제 올라가는 위치
-
+  
+- 메모리에 실제 올라가는 위치
+  
 - 주소 바인딩 : 주소를 결정하는 것
 
   **Symbolic Address -> Logical Address -> Physical Address**
@@ -199,21 +202,211 @@
 
 ### Noncontiguous Allocation
 
-#### Paging
+### 1. Paging
 
 - Paging
-  - Process의 virtual memory를 동일한 사이즈의 page단위로 나눔
+  - Process의 virtual memory를 **동일한 사이즈의 page단위로** 나눔
   - virtual memory의 내용이 page단위로 noncontiguous하게 저장됨
   - 일부는 backing storage에, 일부는  physical memory에 저장
 - Basic Method
   - Physical memory를 동일한 크기의 frame으로 나눔
   - Logical memory를 동일 크기의 page로 나눔(frame과 같은 크기)
   - 모든 가용 frame들을 관리
-  - Page table을 사용하여 logical address를 physical address로 변환
+  - **Page table**을 사용하여 logical address를 physical address로 변환
   - External fragmentation 발생 안 함
   - Internal fragmentation 발생 가능
 
+![스크린샷 2021-04-28 오후 5.50.45](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 5.50.45.png)
+
+논리적 페이지 번호에 해당하는 엔트리를 page table에서 위에서 p번째 찾아가면 f라는 frame번호가 나온다. 그러면 논리적 주소를 물리적 주소로 바꾸게 되는데 이는 논리적 페이지 번호를 프레임 번호로 바꾸어주면 되는 것이다. 
+
+#### Implementation of Page Table
+
+- Page table은 **main memoy**에 상주
+
+- **Page-table base register(PTRB)**가 page table을 가리킴
+
+- **Page-table length register(PTLB)**가 테이블 크기를 보관
+
+- 모든 메모리 접근 연산에는 **2번**의 **memory access** 필요
+
+- Page table 접근 1번, 실제 data/instruction 접근 1번
+
+- 속도 향상을 위해 
+
+  **Associative register** 혹은 **translation look - aside buffer(TLB)** 라 불리는 고속의 lookup hardware cache 사용 
+
+![스크린샷 2021-04-28 오후 6.56.55](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 6.56.55.png)
+
+ 메모리 상의 page table에 먼저 접근하기 전에 TLB를 먼저 검색해봄. 혹시 tlb에 저장된 주소정보를 이용하여 주소변환이 가능한지. 그렇다면 바로 주소변환을 하면 되므로 메모리를 1번만 접근해도 된다. 
+
+##### Associative Register
+
+- **Associative registers(TLB)**: parallel search가 가능
+  - **TLB에는 page table 중 일부만 존재**
+- Address translation
+  - page table 중 일부가 associative register에 보관되어 있음
+  - 만약 해당 page #가 associative register에 있는 경우 곧바로 frame #를 얻음
+  - 그렇지 않을 경우 main memory에 있는 page table로부터 frame #을 얻음
+  - TLB는 context switch 때 flush(모든 엔트리를 비운다.)
 
 
 
+#### Two- level Page Table
+
+- 현대의 컴퓨터는 address space가 매우 큰 프로그램 지원
+  - 32bit address 사용시: 4GB의 주소공간
+    - Page size가 4K시 1M의 page table entry 필요
+    - 각 page entryrk 4B시 프로세스당 4M의 page table 필요
+    - 그러나 대부분의 프로그램은 4G의 주소공간 중 지극히 일부분만 사용하므로 page table 공간이 심하게 낭비됨
+- Page table 자체를 page로 구성
+- 사용되지 않는 주소공간에 대한 outer page table의 엔트리값은 null(대응하는 inner page table이 없음)
+
+![스크린샷 2021-04-28 오후 7.21.23](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 7.21.23.png)
+
+![스크린샷 2021-04-28 오후 7.23.49](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 7.23.49.png)
+
+
+
+#### Multilevel Paging and Performance
+
+- Address space가 더 커지면 다단계 페이지 테이블 필요
+
+- 각 단계의 페이지 테이블이 메모리에 존재하므로 logical address의 physical address변환에  더 많은 메모리접근 필요
+
+- TLB를 통해 메모리 접근시간을 줄일 수 있음
+
+- 4단계 페이지 테이블을 사용하는 경우
+
+  - 메모리 접근시간이 100ns, TLB 접근 시간이 20 ns이고
+
+  - TLB hit ratio가 98%인 경우
+
+    Effective memory access time = 0.98 * 120 + 0.02 * 520 = 128 ns
+
+    결과적으로 주소변환을 위해 28ns만 소요, 다단계 paging이 그렇게 큰 오버헤드가 들지는 않는다. 
+
+
+![스크린샷 2021-04-29 오전 10.57.03](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 10.57.03.png)
+
+
+
+#### Memory Protection
+
+페이지 테이블의 각 entry마다 아래의 bit를 둔다. 
+
+- **Protection bit**
+  - page에 대한 접근권한(read/wirte/read-only) . 연산에 대한 권한 표시
+- **Valid-invalid bit**
+  - **"valid"**는 해당 주소의 frame에 그 프로세스를 구성하는 유효한 내용이 있음을 뜻함(접근 허용)
+  - **"Invalid"**는 해당 주소의 frame에 유효한 내용이 없음을 뜻함(접근불허)
+    - 프로세스가 그 주소부분을 사용하지 않는 경우
+    - 해당 페이지가 메모리에 올라와있지 않고 swap area에 있는 경우
+
+#### Inverted Page Table
+
+- **page table이 매우 큰 이유**
+
+  - 모든 process별로 그 logical address에 대응하는 모든 page에 대해 page table entry가 존재
+  - 대응하는 page가 메모리에 있든 아니든 간에 page table에는 entry로 존재
+
+- **Inverted page table**
+
+  - System-wide 하게 시스템 하나에 page table 하나 존재함
+  - 물리적 메모리의 Page frame 하나당 page table에 하나의 entry를 둔 것(system-wide)
+  - 각 page table entry는 각각의 물리적 메모리의 page frame이 담고 있는 내용 표시(process-id, process의 logical memeory)
+  - 단점
+    - 페이지 전체를 탐색해야 함(인덱스를 활용해 바로 page #로 접근할 수 없음)
+  - 조치
+    - associative register 사용(expensive)
+
+  ![스크린샷 2021-04-29 오전 11.07.16](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 11.07.16.png)
+
+- cpu가 논리적 주소를 받으면 process id와 page number를 받고 page table에서 몇 번째에 해당하는지를 보고 frame #를 찾아 주소변환이 이루어짐
+- 정방향의 주소변환과 달리 첫 번째 entry에는 frame #가 있고 두 번째 entry에는 논리적 주소의 page #가 나온다. 
+
+
+
+#### Shared Page
+
+- **Shared code**
+  - Re-entrant Code(= Pure code)
+  - **read-only**로 하여 프로세스 간에 하나의 code만 메모리에 올림
+  - Shared code는 **모든 프로세스의 logical address space에서 동일한 위치에 있어야 함**
+- **Private code and data**
+  - 각 프로세스들은 독자적으로 메모리에 올림
+  - Private data는 logical address space의 아무 곳에 와도 무방
+
+
+
+### 2. Segmentation
+
+- 프로그램은 의미 단위인 여러 개의 segment로 구성
+
+  - 작게는 프로그램을 구성하는 함수 하나하나를 세그먼트로 정의
+  - 크게는 프로그램 전체를 하나의 세그먼트로 정의 가능
+  - 일반적으로는 code, data, stack 부분이 하나씩의 세그먼트로 정의됨
+
+- segment는 다음과 같은 logical unit 들임
+
+  ```
+  main(),
+  function,
+  global variance,
+  stack,
+  symbol table, arrays
+  ```
+
+#### Segmentation Architecture
+
+- Logical address는 다음의 두 가지로 구성
+
+  **<segment-number, offset>**
+
+- **Segment table**
+
+  - each table entry has:
+    - **Base** - starting physical address of the segment
+    - **Limit** - length of the segment
+
+- **Segment-table base register(STRB)**
+
+  - 물리적 메모리에서의 **segment table의 위치**
+
+- **Segment-table length register(STLR)**
+
+  - 프로그램이 사용하는 **segment의 수**
+
+    segment number s is legal if s< STLR
+
+- **Protection**
+
+  - 각 세그먼트 별로 protection bit가 있음
+  - Each entry: 
+    - Valid bit = 0 => ilegal segment
+    - **Read/Write/Execution** 권한 bit
+
+- **Sharing**
+
+  - Shared segment
+  - Same segment number
+
+  ** segment는 의미 단위이기 때문에 공유(sharing)와 보안(protection)에 있어 paging 보다 훨신 효과적이다.
+
+- **Allocation**
+
+  - First fit / best fit
+  - external framentation 발생
+
+  ** segment의 길이가 동일하지 않으므로 가변분할 방식에서와 동일한 문제점들이 발생
+
+![스크린샷 2021-04-29 오전 11.46.03](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 11.46.03.png)
+
+- cpu가 논리주소를 주게 되면 segment # 와 offset  두 부분으로 나눈다.
+
+- 체크해봐야 할 두 가지
+  -  ssegment number s is legal if s< STLR인지. 아니라면 trap. 
+  - 세그먼트의 길이보다 세그먼트 안에서 떨어진 offset값이 더 크지는 않은가. 
+
+![스크린샷 2021-04-29 오후 12.14.29](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오후 12.14.29.png)
 
