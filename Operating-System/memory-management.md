@@ -218,7 +218,7 @@
   - External fragmentation 발생 안 함
   - Internal fragmentation 발생 가능
 
-![스크린샷 2021-04-28 오후 5.50.45](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 5.50.45.png)
+<img width="513" alt="스크린샷 2021-04-28 오후 5 50 45" src="https://user-images.githubusercontent.com/72622744/116687990-ff92fb80-a9f0-11eb-8dc8-36f0657dd12f.png">
 
 논리적 페이지 번호에 해당하는 엔트리를 page table에서 위에서 p번째 찾아가면 f라는 frame번호가 나온다. 그러면 논리적 주소를 물리적 주소로 바꾸게 되는데 이는 논리적 페이지 번호를 프레임 번호로 바꾸어주면 되는 것이다. 
 
@@ -238,7 +238,7 @@
 
   **Associative register** 혹은 **translation look - aside buffer(TLB)** 라 불리는 고속의 lookup hardware cache 사용 
 
-![스크린샷 2021-04-28 오후 6.56.55](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 6.56.55.png)
+<img width="510" alt="스크린샷 2021-04-28 오후 6 56 55" src="https://user-images.githubusercontent.com/72622744/116688051-176a7f80-a9f1-11eb-8fc3-8045b94344ef.png">
 
  메모리 상의 page table에 먼저 접근하기 전에 TLB를 먼저 검색해봄. 혹시 tlb에 저장된 주소정보를 이용하여 주소변환이 가능한지. 그렇다면 바로 주소변환을 하면 되므로 메모리를 1번만 접근해도 된다. 
 
@@ -264,10 +264,9 @@
 - Page table 자체를 page로 구성
 - 사용되지 않는 주소공간에 대한 outer page table의 엔트리값은 null(대응하는 inner page table이 없음)
 
-![스크린샷 2021-04-28 오후 7.21.23](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 7.21.23.png)
+<img width="511" alt="스크린샷 2021-04-28 오후 7 21 23" src="https://user-images.githubusercontent.com/72622744/116688133-3832d500-a9f1-11eb-82e3-dcd872bc2279.png">
 
-![스크린샷 2021-04-28 오후 7.23.49](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-28 오후 7.23.49.png)
-
+<img width="515" alt="스크린샷 2021-04-28 오후 7 23 49" src="https://user-images.githubusercontent.com/72622744/116688205-526cb300-a9f1-11eb-9bd1-a386e0c19232.png">
 
 
 #### Multilevel Paging and Performance
@@ -289,8 +288,7 @@
     결과적으로 주소변환을 위해 28ns만 소요, 다단계 paging이 그렇게 큰 오버헤드가 들지는 않는다. 
 
 
-![스크린샷 2021-04-29 오전 10.57.03](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 10.57.03.png)
-
+<img width="514" alt="스크린샷 2021-04-29 오전 10 57 03" src="https://user-images.githubusercontent.com/72622744/116688266-6b756400-a9f1-11eb-96ca-d8d8e3bc0abd.png">
 
 
 #### Memory Protection
@@ -322,7 +320,8 @@
   - 조치
     - associative register 사용(expensive)
 
-  ![스크린샷 2021-04-29 오전 11.07.16](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 11.07.16.png)
+  <img width="515" alt="스크린샷 2021-04-29 오전 11 07 16" src="https://user-images.githubusercontent.com/72622744/116688318-847e1500-a9f1-11eb-83ba-834b14f86cde.png">
+
 
 - cpu가 논리적 주소를 받으면 process id와 page number를 받고 page table에서 몇 번째에 해당하는지를 보고 frame #를 찾아 주소변환이 이루어짐
 - 정방향의 주소변환과 달리 첫 번째 entry에는 frame #가 있고 두 번째 entry에는 논리적 주소의 page #가 나온다. 
@@ -402,7 +401,7 @@
 
   ** segment의 길이가 동일하지 않으므로 가변분할 방식에서와 동일한 문제점들이 발생
 
-![스크린샷 2021-04-29 오전 11.46.03](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오전 11.46.03.png)
+<img width="513" alt="스크린샷 2021-04-29 오전 11 46 03" src="https://user-images.githubusercontent.com/72622744/116688411-9d86c600-a9f1-11eb-8349-ce6674a01016.png">
 
 - cpu가 논리주소를 주게 되면 segment # 와 offset  두 부분으로 나눈다.
 
@@ -410,11 +409,11 @@
   -  segment number s is legal if s< STLR인지. 아니라면 trap. 
   - 세그먼트의 길이보다 세그먼트 안에서 떨어진 offset값이 더 크지는 않은가. 
 
-![스크린샷 2021-04-29 오후 12.14.29](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오후 12.14.29.png)
+<img width="512" alt="스크린샷 2021-04-29 오후 12 14 29" src="https://user-images.githubusercontent.com/72622744/116688463-b42d1d00-a9f1-11eb-95f8-769a8ea04572.png">
 
 실제적으로 비교하자면 table을 위한 메모리 낭비가 심한 쪽은 paging이 된다. segmentatation이 낭비가 적다. 
 
-![스크린샷 2021-04-30 오후 8.00.41](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-30 오후 8.00.41.png)
+<img width="503" alt="스크린샷 2021-04-30 오후 8 00 41" src="https://user-images.githubusercontent.com/72622744/116688533-cdce6480-a9f1-11eb-9a15-f3c162f84faf.png">
 
 세그먼트를 서로다른 두 프로세스가 공유하는 예제(Shared segment)
 
@@ -423,4 +422,4 @@
 - segment하나가 여러 page로 구성. 메모리에 올라갈 때는 page단위로 올라간다. allocation문제가 생기지 않는다. 
 - 의미단위로 해야 하는 공유, 보안 같은 업무는 segment table level에서 하는 것
 
-![스크린샷 2021-04-30 오후 8.03.04](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-30 오후 8.03.04.png)
+<img width="508" alt="스크린샷 2021-04-30 오후 8 03 04" src="https://user-images.githubusercontent.com/72622744/116688589-e2126180-a9f1-11eb-91d4-6f7db27127f3.png">
