@@ -2,6 +2,8 @@
 
 # Chap 8. Memory Management
 
+*주소변환에 있어 운영체제의 역할은 없음. 전부 하드웨어적 역할임*
+
 ## Logical vs Physical Address
 
 - Logical address(= virtual address)
@@ -405,8 +407,20 @@
 - cpu가 논리주소를 주게 되면 segment # 와 offset  두 부분으로 나눈다.
 
 - 체크해봐야 할 두 가지
-  -  ssegment number s is legal if s< STLR인지. 아니라면 trap. 
+  -  segment number s is legal if s< STLR인지. 아니라면 trap. 
   - 세그먼트의 길이보다 세그먼트 안에서 떨어진 offset값이 더 크지는 않은가. 
 
 ![스크린샷 2021-04-29 오후 12.14.29](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-29 오후 12.14.29.png)
 
+실제적으로 비교하자면 table을 위한 메모리 낭비가 심한 쪽은 paging이 된다. segmentatation이 낭비가 적다. 
+
+![스크린샷 2021-04-30 오후 8.00.41](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-30 오후 8.00.41.png)
+
+세그먼트를 서로다른 두 프로세스가 공유하는 예제(Shared segment)
+
+### 3. Paged Segmentation
+
+- segment하나가 여러 page로 구성. 메모리에 올라갈 때는 page단위로 올라간다. allocation문제가 생기지 않는다. 
+- 의미단위로 해야 하는 공유, 보안 같은 업무는 segment table level에서 하는 것
+
+![스크린샷 2021-04-30 오후 8.03.04](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-04-30 오후 8.03.04.png)
