@@ -39,13 +39,13 @@
   4. 이 프로세스가 cpu를 잡고 다시 running
   5. 아까 중단되었던 instruction을 재개
 
-![스크린샷 2021-05-03 오후 8.50.14](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 8.50.14.png)
+<img width="515" alt="스크린샷 2021-05-03 오후 8 50 14" src="https://user-images.githubusercontent.com/72622744/116877195-957c8f80-ac58-11eb-820d-e0ad34b9b11f.png">
 
 메모리 레퍼런스가 있었는데 invalid로 표시가 된 경우. trap이 걸려서 cpu가 운영체제로 넘어간다. 운영체제는 backing store에 있는 페이지를 물리적 메모리로 올려둔다. 올려둔 작업이 끝나면 해당하는 frame #를 entry에 적어두고 valid로 바꾼다. 이후 cpu를 얻어서 주소변환을 하면 valid로 되어 있으니 주소변환이 정상적으로 되어 해당하는 물리적 메모리의 page frame을 접근할 수 있게 된다.
 
 
 
-![스크린샷 2021-05-03 오후 8.54.56](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 8.54.56.png)
+<img width="512" alt="스크린샷 2021-05-03 오후 8 54 56" src="https://user-images.githubusercontent.com/72622744/116877275-b04f0400-ac58-11eb-8883-bc0542f4f67b.png">
 
 
 
@@ -81,15 +81,14 @@
 - 실제로 사용할 수는 없지만 다른 알고리즘의 성능에 대한 upper bound 제공(가장 적거나 같은 page fault를 발생시킨다.)
   - Belady's optimal algorithm, MIN, OPT 등으로 불림
 
-![스크린샷 2021-05-03 오후 9.07.37](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 9.08.38.png)
-
+<img width="499" alt="스크린샷 2021-05-03 오후 9 08 38" src="https://user-images.githubusercontent.com/72622744/116877341-c78df180-ac58-11eb-9022-1f7b92b29807.png">
 
 
 ### FIFO(First In First Out) Algorithm
 
 - FIFO: 먼저 들어온 것을 먼저 내쫓음
 
-![스크린샷 2021-05-03 오후 9.13.30](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 9.13.30.png)
+<img width="514" alt="스크린샷 2021-05-03 오후 9 13 30" src="https://user-images.githubusercontent.com/72622744/116877445-eb513780-ac58-11eb-94e5-0e1a65f8222e.png">
 
 FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 발생하는 상황이 있을 수 있다.
 
@@ -99,8 +98,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
 
 - 가장 오래 전에 참조된 것을 지움
 
-![스크린샷 2021-05-03 오후 9.16.49](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 9.16.49.png)
-
+<img width="493" alt="스크린샷 2021-05-03 오후 9 16 49" src="https://user-images.githubusercontent.com/72622744/116877542-0a4fc980-ac59-11eb-966e-21c6755a5940.png">
 
 
 ### LFU(Least Freqeuntly Used) Algorithm
@@ -116,7 +114,4 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
 
 
 
-![스크린샷 2021-05-03 오후 9.29.15](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-03 오후 9.29.15.png)
-
-
-
+<img width="514" alt="스크린샷 2021-05-03 오후 9 29 15" src="https://user-images.githubusercontent.com/72622744/116877608-218eb700-ac59-11eb-9725-fd84760b056e.png">
