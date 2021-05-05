@@ -115,7 +115,7 @@ print(str)  # 1 2 3 4 출력
 
 
 
-## 2. list
+## 3. list
 
 ### sorted와 sort
 
@@ -123,4 +123,10 @@ print(str)  # 1 2 3 4 출력
 - `list.sort()` :  None값 리턴. 원래 리스트를 정렬한다. 
 
 일반적으로 sort()가 복사본을 만들지 않으므로 속도가 더 빠르다. 
+
+#### 특정 인덱스에 따라서 정렬되도록: `lambda` 함수 이용
+
+```python
+sorted(student_tuples, key=lambda idx: idx[2])  # 2번째(0, 1, 2, ...에서) 인덱스 값을 기준으로 정렬
+```
 
