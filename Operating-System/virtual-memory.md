@@ -163,7 +163,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
   - Reference bit = 1: 최근에 참조된 페이지
   - Modified bit = 1 : 최근에 변경된 페이지(I/O를 동반하는 페이지)
 
-![스크린샷 2021-05-05 오후 3.58.36](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-05 오후 3.58.36.png)
+<img width="503" alt="스크린샷 2021-05-05 오후 3 58 36" src="https://user-images.githubusercontent.com/72622744/117246994-7ceac000-ae78-11eb-8665-61795a2b1c8c.png">
 
 
 
@@ -229,7 +229,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
       - Time interval [ti-Δ, ti] 사이에 참조된 서로 다른 페이지들의 집합
     - Working set에 속한 page는 메모리에 유지, 속하지 않은 것은 버림 ( 즉, 참조된 후 Δ 시간 동안 해당 page를 메모리에 유지한 후 버림)
 
-![스크린샷 2021-05-06 오전 10.33.47](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 10.33.47.png)
+<img width="490" alt="스크린샷 2021-05-06 오전 10 33 47" src="https://user-images.githubusercontent.com/72622744/117247060-97249e00-ae78-11eb-9a3d-0a0957145c6c.png">
 
 - Working-Set Algorithm
   - Process들의 working set size의 합이 page frame의 수보다 큰 경우
@@ -246,7 +246,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
 
 ## PFF(Page-Fault Frequency) Scheme
 
-![스크린샷 2021-05-06 오전 10.41.55](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 10.41.55.png)
+<img width="406" alt="스크린샷 2021-05-06 오전 10 41 55" src="https://user-images.githubusercontent.com/72622744/117247125-b4f20300-ae78-11eb-961e-986400af904d.png">
 
 직접 page-fault rate를 본다. 
 
