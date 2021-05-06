@@ -1,5 +1,7 @@
 # Chap 9. Virtual Memory
 
+*이전까지 논의해온 메모리관리기법은 프로세스 전체가 실행되기 전에 메모리로 올라와야 한다는 것을 전제로 하고 있다. 프로세스 전체가 메모리 내에 올라오지 않더라도 실행이 가능하도록 하는 기법을 가상메모리라 한다.*
+
 *virtual memory 기법은 전적으로 운영체제가 관여*
 
 ## Demand Paging
@@ -57,13 +59,13 @@
   - 곧바로 사용되지 않을 page를 쫓아내는 것이 좋음
   - 동일한 페이지가 여러 번 메모리에서 쫓겨났다가 다시 들어올 수 있음
 
-- **Replacement Algorithm**
+- <u>**Replacement Algorithm**</u>
 
   - **Page-fault rate를 최소화**하는 것이 목표
 
   - 알고리즘의 평가
 
-    - 주어진 page reference string에 대해 page fault를 어라나 내는지 조사
+    - 주어진 page reference string에 대해 page fault를 얼마나 내는지 조사
 
   - Reference string의 예
 
@@ -108,9 +110,9 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
     - LFU 알고리즘 자체에서는 여러 page 중 임의로 선정한다
     - 성능 향상을 위해 가장 오래 전에 참조된 page를 지우게 구현할 수도 있다
   - 장단점
-    - LRU처럼 직전 참조 시점만 보는 것이 아니라 장기적인 시간 규모를 보기 때문에 page의 인기도를 좀 더 정학히 반영할 수 있음
-    - 참조 시점의 최근성을 반영하지 못함
-    - LRU보다 구현이 복잡함
+    - (+) LRU처럼 직전 참조 시점만 보는 것이 아니라 장기적인 시간 규모를 보기 때문에 page의 인기도를 좀 더 정학히 반영할 수 있음
+    - (-) 참조 시점의 최근성을 반영하지 못함
+    - (-) LRU보다 구현이 복잡함
 
 
 
@@ -127,7 +129,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
   - 한정된 빠른공간(=캐쉬)에 요청된 데이터를 저장해두었다가 후속요청시 캐쉬로부터 직접 서비스하는 방식
   - paging system 외에서도 cache memory, buffer caching, Web caching 등 다양한 분야에서 사용
 
-- 캐쉬 운영의 시간제약
+- **캐쉬 운영의 시간제약**
 
   - 교체알고리즘에서 삭제할 항목을 결정하는 일에 지나치게 많은 시간이 걸리는 경우 실제시스템에서 사용할 수 없음
 
@@ -141,9 +143,7 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
     - 페이지가 이미 메모리에 존재하는 경우 참조시각 등의 정보를 OS가 알 수 없음
     - O(1)인 LRU의 list 조작조차 불가능
 
-    -> LRU, LFU 가능하지 않음
-
-
+    -> <u>LRU, LFU 가능하지 않음</u>
 
 
 
@@ -215,8 +215,58 @@ FIFO Anomaly : 메모리 프레임을 늘려주어도 page fault가 더 많이 �
   - 프로세스는 특정시간 동안 일정 장소만을 집중적으로 참조한다
   - 집중적으로 참조되는 해당 page들의 집합을 locality set이라 함
 - Working-set Model
-  - Locality에 기반하여 프로세스가 일정 시간동안 원활하게 수행되기 위해 한꺼번에 메모리에 올라와있어야 하는 page들의 집합을 Working Set이라 정의함
+  - Locality에 기반하여 프로세스가 일정 시간동안 원활하게 수행되기 위해 한꺼번에 메모리에 올라와있어야 하는 page들의 집합을 **Working Set**이라 정의함
   - Working Set 모델에서는 process의 working set 전체가 메모리에 올라와 있어야 수행되고 그렇지 않을 경우 모든 frame을 반납한 후 swap out(suspend)
   - Thrashing을 방지함
-  - Multiprogramming degree를 결정함
+  - **Multiprogramming degree**를 결정함
 
+### Workin-Set Algorithm
+
+- Working-set의 결정
+  - Working set window(Δ시간)를 통해 알아냄
+  - Window size가 Δ인 경우
+    - 시각 t i에서의 window set WS(ti)
+      - Time interval [ti-Δ, ti] 사이에 참조된 서로 다른 페이지들의 집합
+    - Working set에 속한 page는 메모리에 유지, 속하지 않은 것은 버림 ( 즉, 참조된 후 Δ 시간 동안 해당 page를 메모리에 유지한 후 버림)
+
+![스크린샷 2021-05-06 오전 10.33.47](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 10.33.47.png)
+
+- Working-Set Algorithm
+  - Process들의 working set size의 합이 page frame의 수보다 큰 경우
+    - 일부 process를 swap out 시켜 남은 process의 working set을 우선적으로 충족시켜준다(MPD를 줄임)
+  - Working set을 다 할당하고도 page frame이 남는 경우
+    - Swap out 되었던 프로세ㅔ스에게 working set을 할당(MPD를 키움)
+- Window size Δ
+  - Working set을 제대로 탐지하기 위해서는 window size를 잘 결정해야 함
+  - Δ값이 너무 작으면 locality set을 모두 수용하지 못할 우려
+  - Δ값이 크면 여러 규모의 locality set 수용
+  - Δ값이 ∞이면 전체 프로그램을 구성하는 page를 working set으로 간주
+
+
+
+## PFF(Page-Fault Frequency) Scheme
+
+![스크린샷 2021-05-06 오전 10.41.55](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 10.41.55.png)
+
+직접 page-fault rate를 본다. 
+
+- Page-fault rate의 상한값과 하한값을 둔다
+  - Page fault rate이 상한값을 넘으면 frame을 더 할당한다
+  - Page fault rate이 하한값 이하이면 할당 frame 수를 줄인다
+- 빈 frame이 없으면 일부 프로세스를 swap out
+
+
+
+## Page Size의 결정
+
+- Page size를 감소시키면
+  - 페이지 수 증가
+  - 페이지 테이블 크기 증가
+  - International fragmentation 감소
+  - Disk transfer의 효율성 감소
+    - Seek/rotation vs transfer
+    - 가능하면 한 번 disk sector가 이동해서 많은 양의 뭉치를 읽어서 메모리에 올리는 것이 효율적
+  - 필요한 정보만 메모리에 올라와 메모리 이용이 효율적
+    - Locality의 활용측면에서는 좋지 않음
+- Trend
+  - Larger page size
