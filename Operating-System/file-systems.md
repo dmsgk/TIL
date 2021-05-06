@@ -67,7 +67,7 @@
     - File desciptor( file handle, file control block)
       - Open file table에 대한 위치정보(프로세스별)
 
-  ![스크린샷 2021-05-06 오전 11.50.35](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 11.50.35.png)
+<img width="502" alt="스크린샷 2021-05-06 오전 11 50 35" src="https://user-images.githubusercontent.com/72622744/117247289-f4205400-ae78-11eb-8ebc-71be11794ec0.png">
 
 
 
@@ -81,7 +81,8 @@
 
   - **Access control Matrix**
 
-    ![스크린샷 2021-05-06 오전 11.54.06](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오전 11.54.06.png)
+    <img width="402" alt="스크린샷 2021-05-06 오전 11 54 06" src="https://user-images.githubusercontent.com/72622744/117247346-0bf7d800-ae79-11eb-8c0e-6292ef03b24a.png">
+
 
     - 그러나 행렬 방식으로 하면 희소행렬이 되어 메모리가 낭비되므로 linked list로 아래와 같이 두 가지로 access control하는 방법을 생각할 수 있다.
     - Access control list: 파일별로, 누구에게 어떤 접근권한이 있는지 표시
@@ -106,7 +107,8 @@
 
 다른 partition에 있는 root file system에 접근해야 한다면?
 
-![스크린샷 2021-05-06 오후 12.02.38](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-06 오후 12.02.38.png)
+<img width="508" alt="스크린샷 2021-05-06 오후 12 02 38" src="https://user-images.githubusercontent.com/72622744/117247603-86c0f300-ae79-11eb-8085-abcc8219e8f8.png">
+샷 2021-05-06 오후 12.02.38.png)
 
 
 
