@@ -115,9 +115,9 @@ print(str)  # 1 2 3 4 출력
 
 
 
-## 3. list
+## 3. List
 
-### sorted와 sort
+### 3.1. 정렬 - sorted와 sort
 
 - `a = sorted(list)` : 리스트 값을 정렬하여 a에 저장. 원래 리스트는 정렬되지 않는다. 
 - `list.sort()` :  None값 리턴. 원래 리스트를 정렬한다. 
@@ -128,5 +128,92 @@ print(str)  # 1 2 3 4 출력
 
 ```python
 sorted(student_tuples, key=lambda idx: idx[2])  # 2번째(0, 1, 2, ...에서) 인덱스 값을 기준으로 정렬
+```
+
+
+
+### 3.2. 집계를 위한 클래스 : `collections.Counter`
+
+어떤 원소 x가 주어진 시퀀스에 몇 번이나 등장하는지 세야할 때 사용
+
+```python
+import collections
+my_list = ["classic", "pop", "classic", "classic", "pop"]
+my_counter = collections.Counter(my_list)
+my_counter   # Counter({'classic': 3, 'pop': 2})
+
+# 원소에 접근하기
+my_counter['classic']  # 3
+
+# dict() 함수를 이용해 딕셔너리로 변환
+dict(my_counter)   # {'classic': 3, 'pop': 2}
+```
+
+### 
+
+## 4. Dictionary
+
+### 4.1. 딕셔너리 정렬
+
+#### Key에 의한 정렬
+
+- **sorted(dict.items())**
+
+```python
+dict = {"abcde" : 7, "fzowe" : 5, "fko" : 5}
+sortedArr = sorted(dict.items())
+```
+
+- **sorted(dict.items(), key=operator.itemgetter(0))** : 특정 인덱스0(=key)에 의한 정렬
+
+```python
+import operator
+
+dict = {"abcde" : 7, "fzowe" : 5, "fko" : 5}
+sortedArr = sorted(dict.items(), key=operator.itemgetter(0))
+```
+
+#### Value에 의한 정렬
+
+- **sorted(dict.items(), key=operator.itemgetter(1))** : 특정 인덱스1(=value)에 의한 정렬
+
+```python
+import operator
+
+dict = {"abcde" : 7, "fzowe" : 5, "fko" : 5}
+sortedArr = sorted(dict.items(), key=operator.itemgetter(1))
+
+print sortedArr
+>>> [('fzowe', 5), ('fko', 5), ('abcde', 7)]
+```
+
+##### **value에 의한 정렬 -> key에 의한 정렬**
+
+- sorted(dict.items(), **key=operator.itemgetter(1, 0)**)
+
+1을 기준으로 오름차순으로 정렬하고, 같은 값이 나온다면 0을 기준으로 오름차순으로 다시 정렬
+
+```python
+import operator
+
+dict = {"abcde" : 7, "fzowe" : 5, "fko" : 5}
+sortedArr = sorted(dict.items(), key=operator.itemgetter(1, 0))
+
+print sortedArr
+>>> [('fko', 5), ('fzowe', 5), ('abcde', 7)]
+```
+
+##### **내림차순 정렬**
+
+- sorted(dict.items(), key=operator.itemgetter(1), **reverse=True)**
+
+```python
+import operator
+
+dict = {"abcde" : 7, "fzowe" : 5, "fko" : 5}
+sortedArr = sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
+
+print sorted
+>>> [('abcde', 7), ('fzowe', 5), ('fko', 5)]
 ```
 
