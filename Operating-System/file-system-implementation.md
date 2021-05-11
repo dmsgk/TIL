@@ -16,7 +16,7 @@
 
 - 하나의 파일이 디스크 상 연속하여 저장되는 방식
 
-![스크린샷 2021-05-10 오후 3.16.11](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-10 오후 3.16.11.png)
+<img width="482" alt="스크린샷 2021-05-10 오후 3 16 11" src="https://user-images.githubusercontent.com/72622744/117813940-a2276600-b29e-11eb-825d-9f577982cd96.png">
 
 - 단점
 
@@ -39,7 +39,7 @@
 
 - file data를 디스크에 연속적으로 저장하지 않고 빈 위치면 아무데나 들어갈 수 있도록 하는 방식
 
-![스크린샷 2021-05-10 오후 3.27.55](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-10 오후 3.27.55.png)
+<img width="495" alt="스크린샷 2021-05-10 오후 3 27 55" src="https://user-images.githubusercontent.com/72622744/117814005-b9665380-b29e-11eb-8518-98046a30415b.png">
 
 - file의 시작위치만 directory가 가지고 있고 가면서 다음위치는 알게 되고 끝날 경우 끝났다고 표시
 - 장점
@@ -60,7 +60,7 @@
 
 - 직접접근이 가능하게 하기 위해 directory에 index block에 모든 위치를 저장해놓음
 
-![스크린샷 2021-05-10 오후 3.36.21](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-10 오후 3.36.21.png)
+<img width="486" alt="스크린샷 2021-05-10 오후 3 36 21" src="https://user-images.githubusercontent.com/72622744/117814055-cc792380-b29e-11eb-9e32-90a9f908ce5d.png">
 
 - 장점
   - 외부조각이 생기지 않음
@@ -78,7 +78,7 @@
 
 ## UNIX 파일시스템의 구조
 
-![스크린샷 2021-05-10 오후 3.43.25](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-10 오후 3.43.25.png)
+<img width="512" alt="스크린샷 2021-05-10 오후 3 43 25" src="https://user-images.githubusercontent.com/72622744/117814125-e0248a00-b29e-11eb-9113-da3b2e08e1e6.png">
 
 - 유닉스 파일 시스템의 중요 개념
   - Boot block
@@ -94,7 +94,7 @@
 
 ## FAT File System
 
-![스크린샷 2021-05-11 오후 8.19.43](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.19.43.png)
+<img width="498" alt="스크린샷 2021-05-11 오후 8 19 43" src="https://user-images.githubusercontent.com/72622744/117814190-f4688700-b29e-11eb-83c7-f79f6da778c2.png">
 
 위 경우에서는 파일의 첫 번째 블록이 217번에 있고, 두 번째 블록의 위치를 알기 위해서는 FAT에서 217번 엔트리에 있는 618임을 알 수 있고... 계속하여 339번 엔트리에 가면 더 이상의 블럭은 없다는 것을 알게 된다. 다음 위치를 찾기 위해 블럭을 접근하는 것이 아니라 FAT만 접근하면 된다. 직접접근이 가능하다는 장점. 데이터블록이 유실되더라도 FAT에 정보가 있다. FAT에 있는 정보는 중요한 정보이므로 2카피 이상을 두고 있다.
 
@@ -113,7 +113,7 @@
 
 - **Bit map or bit vector**
 
-  ![스크린샷 2021-05-11 오후 8.29.40](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.29.40.png)
+  <img width="243" alt="스크린샷 2021-05-11 오후 8 29 40" src="https://user-images.githubusercontent.com/72622744/117814270-0c400b00-b29f-11eb-8136-b5368db1ae36.png">
 
   - 비트를 사용하여 블록이 비었는지 여부를 표시함
 
@@ -164,7 +164,7 @@ Directory file에 내용을 어떻게 저장할 것인가.
   - File name이 고정 크기의 entry 길이보다 길어지는 경우 entry의 마지막 부분에 이름의 뒷부분이 위치한 곳의 포인터를 두는 방법
   - 이름의 나머지 부분은 동일한 directory file의 일부에 존재
 
-  ![스크린샷 2021-05-11 오후 8.49.36](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.49.36.png)
+  <img width="491" alt="스크린샷 2021-05-11 오후 8 49 36" src="https://user-images.githubusercontent.com/72622744/117814351-2843ac80-b29f-11eb-9c72-4635b1dd3afc.png">
 
   어느 정도 길이로 한정해 놓고 파일명이 이를 넘는 경우 포인터를 둬서 이름의 뒷부분의 이 위치한 곳의 포인터를 둔다.
 
@@ -174,7 +174,7 @@ Directory file에 내용을 어떻게 저장할 것인가.
 
 ## VFS and NFS
 
-![스크린샷 2021-05-11 오후 8.53.20](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.53.20.png)
+<img width="497" alt="스크린샷 2021-05-11 오후 8 53 20" src="https://user-images.githubusercontent.com/72622744/117814410-3abde600-b29f-11eb-8ea8-4e9b496f9ba8.png">
 
 - Virtual File System(VFS)
   - **서로 다른 다양한 file system**에 대해 **동일한 시스템콜 인터페이스(API)를 통해** 접근할 수 있게 해 주는 OS의 layer
@@ -201,5 +201,4 @@ Directory file에 내용을 어떻게 저장할 것인가.
 - **Unified Buffer Cache**
   - 최근의 OS에서는 기존의 buffer cache가 page cache에 통합됨
 
-![스크린샷 2021-05-11 오후 9.09.23](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 9.09.23.png)
-
+<img width="502" alt="스크린샷 2021-05-11 오후 9 09 23" src="https://user-images.githubusercontent.com/72622744/117814472-4e694c80-b29f-11eb-87f8-99c84d71f9fa.png">
