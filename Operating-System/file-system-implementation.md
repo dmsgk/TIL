@@ -1,5 +1,7 @@
 # Chap 11. File System Implementation
 
+
+
 ## Allocation of File Data in Disk
 
 파일을 디스크에 저장하는 방식(이론적 내용)
@@ -70,6 +72,8 @@
       1. Linked scheme
       2. Muliti-level-index
 
+---
+
 
 
 ## UNIX 파일시스템의 구조
@@ -79,10 +83,123 @@
 - 유닉스 파일 시스템의 중요 개념
   - Boot block
     - 부팅에 필요한 정보(bootstrap loader)
+    - 유닉스 파일시스템 뿐 아니라 모든 파일 시스템에서 맨 첫 번째에 온다. 
   - Super block
     - 파일시스템에 관한 총체적인 정보를 담고 있다(어디가 빈 블록이고 어디가 실제로 사용중인 블록인지, 어디까지가 inode list이고  등)
   - Inode list
     - 파일 이름을 제외한 파일의 모든 메타데이터를 저장
+      - Cf. 파일이름은 디렉토리가 가지고 있다
   - Data block
     - 파일의 실제 내용을 보관
+
+## FAT File System
+
+![스크린샷 2021-05-11 오후 8.19.43](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.19.43.png)
+
+위 경우에서는 파일의 첫 번째 블록이 217번에 있고, 두 번째 블록의 위치를 알기 위해서는 FAT에서 217번 엔트리에 있는 618임을 알 수 있고... 계속하여 339번 엔트리에 가면 더 이상의 블럭은 없다는 것을 알게 된다. 다음 위치를 찾기 위해 블럭을 접근하는 것이 아니라 FAT만 접근하면 된다. 직접접근이 가능하다는 장점. 데이터블록이 유실되더라도 FAT에 정보가 있다. FAT에 있는 정보는 중요한 정보이므로 2카피 이상을 두고 있다.
+
+- Boot block
+- FAT : 파일의 메타데이터 중 극히 일부를 가지고 있음
+- Root directory
+- Data block
+
+---
+
+
+
+## Free- Space Management
+
+비어있는 블럭을 어떻게 관리할지
+
+- **Bit map or bit vector**
+
+  ![스크린샷 2021-05-11 오후 8.29.40](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.29.40.png)
+
+  - 비트를 사용하여 블록이 비었는지 여부를 표시함
+
+  - Bit map은 부가적인 공간을 필요로 함
+  - 연속적인 n개의 free block을 찾는데 효과적
+
+- **Linked List**
+  - 모든 free block들을 링크로 연결(free list)
+  - 연속적인 가용공간을 찾는 것은 쉽지 않다
+  - 공간의 낭비가 없다
+- **Grouping**
+  - linked list 방법의 변형
+  - 첫 번째 free block이 n개의 pointer를 가짐
+  - n-1 pointer는 free data block을 가리킴
+  - 마지막 pointer가 가리키는 block은 또 다시 n pointer를 가짐
+- **Counting**
+  - 프로그램들이 종종 여러 개의 연속적인 block을 할당하고 반납한다는 성질에 착안
+  - (First free bock, # of contiguous free blocks)을 유지
+
+
+
+## Directory Implementation
+
+Directory file에 내용을 어떻게 저장할 것인가.
+
+- Linear list
+  - <file, name, file의metada>의 list
+  - 구현이 간단
+  - 디렉토리 내에 파일이 있는지 찾기 위해서는 linear search가 필요(time-consuming)
+- Hash Table
+  - Linear list + **hashing**
+    - 해시 함수를 적용하면 값이 특정 범위 내에서 나오게 된다.
+  - Hash table은 file name을 이 파일의 linear list의 위치로 바꾸어줌
+  - Search time을 없앰
+  - Collision 발생가능(해시 함수를 사용하기 때문에 서로 다른 파일에 대해 같은 결과값으로 매핑되는)
+
+
+
+- File의 metadata의 보관위치
+
+  - 디렉토리 내에 직접보관
+  - 디렉토리에는 포인터를 두고 다른 곳에 보관
+    - Inode, FAT 등
+
+- Long file name의 지원방식
+
+  - <file name, file의 메타데이터>의 list에서 각 entry는 일반적으로 고정크기
+  - File name이 고정 크기의 entry 길이보다 길어지는 경우 entry의 마지막 부분에 이름의 뒷부분이 위치한 곳의 포인터를 두는 방법
+  - 이름의 나머지 부분은 동일한 directory file의 일부에 존재
+
+  ![스크린샷 2021-05-11 오후 8.49.36](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.49.36.png)
+
+  어느 정도 길이로 한정해 놓고 파일명이 이를 넘는 경우 포인터를 둬서 이름의 뒷부분의 이 위치한 곳의 포인터를 둔다.
+
+---
+
+
+
+## VFS and NFS
+
+![스크린샷 2021-05-11 오후 8.53.20](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 8.53.20.png)
+
+- Virtual File System(VFS)
+  - **서로 다른 다양한 file system**에 대해 **동일한 시스템콜 인터페이스(API)를 통해** 접근할 수 있게 해 주는 OS의 layer
+- Network File System(NFS)
+  - 분산 시스템에서는 네트워크를 통해 파일이 공유될 수 있음
+  - NFS는 분산 환경에서의 대표적인 파일 공유 방법임
+
+
+
+## Page Cache and Buffer Cache
+
+- **Page cache**
+  - Virtual memory의 paging system에서 사용하는 **page frame**을 caching의 관점에서 설명하는 용어
+  - Memory-Mapping I/O를 쓰는 경우 file의 I/O에서도 page cache 사용
+- **Memory-Mapping I/O**
+  -  file의 일부를 virtual memory에 mapping 시킴
+  - 매핑시킨 영역에 대한 메모리 접근 연산은 파일의 입출력을 수행하게 함
+- **Buffer Cache**
+  - **파일시스템을 통한 I/O 연산**은 메모리의 특정 영역인 buffer cache 사용
+  - File 사용의 locality 활용
+    - 한 번 읽어온 block에 대한 후속 요청시 buffer cache에서 즉시 전달
+  - 모든 프로세스가 공용으로 사용
+  - Replacement algorithm 필요(LRU, LFU 등)
+- **Unified Buffer Cache**
+  - 최근의 OS에서는 기존의 buffer cache가 page cache에 통합됨
+
+![스크린샷 2021-05-11 오후 9.09.23](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-11 오후 9.09.23.png)
 
