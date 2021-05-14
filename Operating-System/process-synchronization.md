@@ -141,12 +141,32 @@ do {
     - P(S) : 공유데이터를 획득하는 과정
     - V(S) : 다 사용하고 반납하는 과정
 - **Two types of semaphore**
-  - Counting semaphores
+  - **Counting semaphores**
     - 도메인이 0이상인 임의의 정수값
     - 주로 resource counting에 사용
-  - Binary semaphores
+  - **Binary semaphores**
     - 0 또는 1 값만 가질 수 있는 semaphore
-    - 주로 mutual exclusion(lock/unlock)사용
+    - 주로 mutual exclusion(lock/unlock) 사용
+
+#### [참고] 뮤텍스의 개념과 뮤텍스와 세마포어의 관계 
+
+##### 뮤텍스의 개념
+
+여러 처리 단위가 임계 구역에 동시에 접근하지 못하도록 막는 기법이 필요하다. 이를 '상호 배제(**Mut**ual **Ex**clusion)'이라고 하며 보통 '뮤텍스'로 줄여서 이야기한다. 아주 단순하게 생각하면 뮤텍스는 아래 두 가지 연산만을 지원하면 된다.
+
+- *lock*: 현재의 임계 구역에 들어갈 권한을 얻어온다. 만일 다른 프로세스/스레드가 임계 구역을 수행 중이라면 종료할때까지 대기한다(entry section).
+- *unlock*: 현재의 임계 구역을 모두 사용했음을 알린다. 대기중인 다른 프로세스/스레드가 임계 구역에 진입할 수 있다(exit section).
+
+##### 뮤텍스와 세마포어의 관계
+
+뮤텍스와 세마포어는 서로 튜링 동치이다. 즉, 뮤텍스로 세마포어를 구현할 수 있고 세마포어로 뮤텍스를 구현할 수 있다. 세마포어는 동시에 여러 개의 프로세스/스레드가 임계 구역에 접근할 수 있도록 카운트를 가지고 있는데 카운트가 1인 특별한 세마포어가 바로 뮤텍스이다. 뮤텍스를 이용해 세마포어를 구현하면 아래와 같다.
+
+1. 뮤텍스를 잡는다. 
+2. 현재 카운트 값이?
+   2.1. 0 이라면 뮤텍스를 풀고 1.로 돌아가서 재시도한다.
+   2.2. 1 이상이라면 카운트를 1 감소시키고 뮤텍스를 푼다.
+
+일반적으로 뮤텍스는 프로세스 내부에서만 공유되는 반면 세마포어는 특별히 옵션을 추가하지 않으면 여러 개의 프로세스에서 접근이 가능하다.
 
 
 
@@ -344,7 +364,8 @@ do {
     <img width="448" alt="스크린샷 2021-04-20 오후 5 06 14" src="https://user-images.githubusercontent.com/72622744/115398847-893d0f00-a222-11eb-8e7e-db27d6649ad5.png">
 
 - Dining Philosophers Problem
-<img width="510" alt="스크린샷 2021-04-21 오후 9 02 01" src="https://user-images.githubusercontent.com/72622744/115559128-5eb88800-a2ee-11eb-82fb-ea5e6d470455.png">
+
+  <img width="510" alt="스크린샷 2021-04-21 오후 9 02 01" src="https://user-images.githubusercontent.com/72622744/115559128-5eb88800-a2ee-11eb-82fb-ea5e6d470455.png">
 
 
 
