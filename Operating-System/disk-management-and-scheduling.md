@@ -60,7 +60,7 @@
 
 들어온 순으로 처리하는 알고리즘
 
-![스크린샷 2021-05-14 오전 11.41.35](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오전 11.41.35.png)
+<img width="398" alt="스크린샷 2021-05-14 오전 11 41 35" src="https://user-images.githubusercontent.com/72622744/118217293-1dac3180-b4b0-11eb-8e03-bfa557a80b3a.png">
 
 ### SSTF(Shortest Seek Time First)
 
@@ -68,7 +68,7 @@
 
 - Starvation문제
 
-![스크린샷 2021-05-14 오전 11.42.45](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오전 11.42.45.png)
+<img width="402" alt="스크린샷 2021-05-14 오전 11 42 45" src="https://user-images.githubusercontent.com/72622744/118217322-2ac92080-b4b0-11eb-9646-08f5e49a5bbc.png">
 
 ### SCAN
 
@@ -92,7 +92,7 @@
 - SCAN이나 C-SCAN은 헤드가 디스크 끝에서 끝으로 이동
 - LOOK과 C-LOOK은 헤드가 진행 중이다가 **그 방향에 더 이상 기다리는 요청이 없으면** 헤드의 이동방향을 즉시 그 반대로 이동한다.
 
-![스크린샷 2021-05-14 오전 11.54.17](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오전 11.54.17.png)
+<img width="478" alt="스크린샷 2021-05-14 오전 11 54 17" src="https://user-images.githubusercontent.com/72622744/118217353-403e4a80-b4b0-11eb-932f-0b384aef7165.png">
 
 
 
@@ -116,8 +116,7 @@
     - 일반 파일보다 훨씬 짧은 시간만 존재하고 자주 참조됨
     - 따라서 block의 크기 및 저장방식이 일반 파일시스템과 다름
 
-![스크린샷 2021-05-14 오후 12.05.23](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오후 12.05.23.png)
-
+<img width="446" alt="스크린샷 2021-05-14 오후 12 05 23" src="https://user-images.githubusercontent.com/72622744/118217416-619f3680-b4b0-11eb-8c4b-e9edb93a0d6a.png">
 
 
 
