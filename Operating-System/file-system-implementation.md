@@ -190,7 +190,7 @@ Directory file에 내용을 어떻게 저장할 것인가.
   - Virtual memory의 paging system에서 사용하는 **page frame**을 caching의 관점에서 설명하는 용어
   - Memory-Mapping I/O를 쓰는 경우 file의 I/O에서도 page cache 사용
 - **Memory-Mapping I/O**
-  -  file의 일부를 virtual memory에 mapping 시킴
+  -  file의 주소공간 중 일부를 **virtual memory**에 **mapping** 시킴
   - 매핑시킨 영역에 대한 메모리 접근 연산은 파일의 입출력을 수행하게 함
 - **Buffer Cache**
   - **파일시스템을 통한 I/O 연산**은 메모리의 특정 영역인 buffer cache 사용
@@ -202,3 +202,32 @@ Directory file에 내용을 어떻게 저장할 것인가.
   - 최근의 OS에서는 기존의 buffer cache가 page cache에 통합됨
 
 <img width="502" alt="스크린샷 2021-05-11 오후 9 09 23" src="https://user-images.githubusercontent.com/72622744/117814472-4e694c80-b29f-11eb-87f8-99c84d71f9fa.png">
+
+
+
+![스크린샷 2021-05-14 오전 10.49.05](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오전 10.49.05.png)
+
+- 기존 unified buffer cached를 사용하지 않는 경우, 두 가지 인터페이스 존재. 
+  - 하나,  파일을 오픈한후 read, write 시스템콜을 하는  것. 시스템콜을 하면 파일시스템에 있는 내용을 버퍼캐시로 읽어오고 사용자프로그램에 전달함. 사용자프로그램은 자신의 주소영역에 있는 페이지에 카피해서 사용.
+  - 둘,  memory mapped I/O를 사용하는 것. 시스템콜을 하여 memory mapped I/O를 쓰겠다고. 자신의 주소공간 중 일부를  파일에 매핑하는 것. 그 내용을 페이지캐시에 카피하여 주면 read, write가 되는 것. 그 다음부터는 운영체제의 간섭없이 내 메모리 영역에 데이터 접근하는 방식으로 파일입출력
+  - 그러나 두 경우 모두 파일입출력을 하기 위해서는 buffer cache를 통과해야 한다. 양쪽 모두 buffer cache를 자신의 페이지에 카피해야 하는 오버헤드가 존재함
+- Unified buffer cache를 사용하는 경우, 경로가 단순해짐
+  - Read/write 시스템콜을 하는 경우, 운영체제에게 cpu제어권이 넘어가고, 운영체제는 이미 메모리영역에 올라온 경우 사용자 주소영역에 카피해주면 되고 메모리에 올라와있지 않은 경우에는 파일을 읽어와서 그 내용을 사용자 주소영역에 카피하여 전달한다. 
+  - memory mapped I/O인 경우, 자신의 주소영역 중 일부를 파일에 매핑하는 과정을 거친 다음에는 페이지캐시 자체를 읽고 쓰고 할 수 있음
+
+> 정리:
+>
+> 사용자 프로그램이 파일을 접근하는 방식은 인터페이스가 두 개임. Read write 시스템콜을 사용하면 캐쉬에 있는 내용을 카피해서 자신의 주소공간으로 가져오는 것. Memory mapped I/O를 사용하면 카피가 아니라 물리적 메모리를 매핑하여 사용하는 것. 카피하는 오버헤드가 없고 매핑하여 쓰기 때문에 빠르다. 주의할 점은 다른 사용자 프로그램이 동일한 메모리를 매핑하여 쓰는 경우 일관성 문제가 발생할 수 있다.  
+
+
+
+
+
+
+
+
+
+
+
+
+
