@@ -205,8 +205,7 @@ Directory file에 내용을 어떻게 저장할 것인가.
 
 
 
-![스크린샷 2021-05-14 오전 10.49.05](/Users/johyeonyoon/Library/Application Support/typora-user-images/스크린샷 2021-05-14 오전 10.49.05.png)
-
+<img width="545" alt="스크린샷 2021-05-14 오전 10 49 05" src="https://user-images.githubusercontent.com/72622744/118217091-bb533100-b4af-11eb-859b-6d1fedfc4beb.png">
 - 기존 unified buffer cached를 사용하지 않는 경우, 두 가지 인터페이스 존재. 
   - 하나,  파일을 오픈한후 read, write 시스템콜을 하는  것. 시스템콜을 하면 파일시스템에 있는 내용을 버퍼캐시로 읽어오고 사용자프로그램에 전달함. 사용자프로그램은 자신의 주소영역에 있는 페이지에 카피해서 사용.
   - 둘,  memory mapped I/O를 사용하는 것. 시스템콜을 하여 memory mapped I/O를 쓰겠다고. 자신의 주소공간 중 일부를  파일에 매핑하는 것. 그 내용을 페이지캐시에 카피하여 주면 read, write가 되는 것. 그 다음부터는 운영체제의 간섭없이 내 메모리 영역에 데이터 접근하는 방식으로 파일입출력
