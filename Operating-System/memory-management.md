@@ -12,7 +12,7 @@
   - **cpu가 보는 주소는 logical address임**
 - Physical address
   
-- 메모리에 실제 올라가는 위치
+  - 메모리에 실제 올라가는 위치
   
 - 주소 바인딩 : 주소를 결정하는 것
 
@@ -20,7 +20,7 @@
 
   (프로그래머는 숫자가 아닌 심볼로 된 주소를 사용하게 되고, 컴파일이 되면 논리적 주소로, 실행이 되려면 물리적 주소로 변환이 되어야 한다. )
 
-  - 주소는 언제 결정되는가? 각 프로그램이 가지고 있는 논리적 주소가 물리적 메모리 주소로 언제 결졍되는가. 이를 결정하는 방식 3가지를 살펴본다. 
+  - 주소는 언제 결정되는가? 각 프로그램이 가지고 있는 논리적 주소가 물리적 메모리 주소로 언제 결정되는가. 이를 결정하는 방식 3가지를 살펴본다. 
 
 ## 주소 바인딩(Address Binding)
 
@@ -33,7 +33,7 @@
 - **Load time binding**
   - **실행시작**될 때 주소변환
   - loader의 책임하에 물리적 메모리 주소 부여
-  - 컴파일러가 재배치가능코드(relocatable code)를 생성한 경우 가능
+  - 컴파일러가 **재배치가능코드(relocatable code)**를 생성한 경우 가능
 - **Execution time binding(= Run time binding)**
   - 수행이 시작된 이후에도 프로세스의 메모리 상 위치를 옮길 수 있음
   - cpu가 주소를 참조할 때마다 binding을 점검(address mapping table)
@@ -123,7 +123,7 @@
 
 
 
-## Allocationi of Physical Memory
+## Allocation of Physical Memory
 
 - 메모리는 일반적으로 두 영역으로 나뉘어 사용
 
@@ -151,7 +151,8 @@
 
 ### Contiguous Allocation
 
-- **고정분할(Fixed partition)방식**
+- #### **고정분할(Fixed partition)방식**
+  
   - 물리적 메모리를 몇 개의 영구적 분할(Partition)로 나눔
   - 분할의 크기가 모두 동일한 방식과 서로 다른 방식이 존재
   - 분할 당 하나의 프로그램 적재
@@ -159,7 +160,8 @@
     - 동시에 메모리에 load되는 프로그램의 수가 고정됨
     - 최대 수행 가능 프로그램 크기 제한
   - Internal fragmentation 발생(external fragmentation도 발생)
-- **가변분할(Variable partition) 방식**
+- #### **가변분할(Variable partition) 방식**
+  
   - 프로그램의 크기를 고려해서 할당
   - 분할의 크기, 개수가 동적으로 변함
   - 기술적 관리기법 필요
@@ -177,7 +179,7 @@
 - 외부조각:  분할이 프로그램 크기보다 작아서 생기는 조각
 - 내부조각: 분할의 크기가 프로그램크기보다 커서 남는 조각
 
-#### Dynamic Storage-Allocation Problem
+##### Dynamic Storage-Allocation Problem
 
 가변분할방식에서 size n인 요청을 만족하는 가장 적절한 hole을 찾는 문제
 
