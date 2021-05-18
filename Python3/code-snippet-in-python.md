@@ -145,11 +145,16 @@ my_counter   # Counter({'classic': 3, 'pop': 2})
 # 원소에 접근하기
 my_counter['classic']  # 3
 
+# 가장 많이 나온 튜플을 반환하기
+my_counter.most_common(1)   # [('classic', 3)]
+# 키값 반환
+my_counter.most_common(1)[0][0]  # 'classic'
+
 # dict() 함수를 이용해 딕셔너리로 변환
 dict(my_counter)   # {'classic': 3, 'pop': 2}
 ```
 
-### 
+
 
 ## 4. Dictionary
 
@@ -216,4 +221,26 @@ sortedArr = sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
 print sorted
 >>> [('abcde', 7), ('fzowe', 5), ('fko', 5)]
 ```
+
+
+
+## 5. 문자열
+
+### 5.1. 입력값에 대한 전처리 방법
+
+#### 파이썬 정규표현식
+
+- 단어 문자가 아닌 모든 문자를 공백으로 치환 후 공백 단위로 나누어 단어 리스트로 변환
+
+```python
+import re
+
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
+result = re.sub(pattern='\W', repl=' ', string=paragraph).lower().split()  
+# 출력 ['bob', 'hit', 'a', 'ball', 'the', 'hit', 'ball', 'flew', 'far', 'after', 'it', 'was', 'hit']
+```
+
+
+
+
 
