@@ -71,4 +71,4 @@ print(bubble_sort([2,9,5,3,1,8]))  # [1,2,3,5,8,9]
 
 ### References
 
-- https://github.com/dmsgk/TIL/blob/master/Algorithms/bubble-sort.md
+-https://github.com/GimunLee/tech-refrigerator/blob/master/Algorithm/%EA%B1%B0%ED%92%88%20%EC%A0%95%EB%A0%AC%20(Bubble%20Sort).md#%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC-bubble-sort
