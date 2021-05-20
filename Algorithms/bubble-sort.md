@@ -21,7 +21,7 @@
 
 ## 공간복잡도 : O(n)
 
-주어진 배열 안에서 교환(swap)을 통해, 정렬이 수행되므로 **O(n)** 입니다.
+주어진 배열 안에서 교환(swap)을 통해, 정렬이 수행되므로 **O(n)** 
 
 
 
@@ -65,3 +65,10 @@ def bubble_sort(li):
 print(bubble_sort([2,9,5,3,1,8]))  # [1,2,3,5,8,9]
 ```
 
+
+
+
+
+### References
+
+- https://github.com/dmsgk/TIL/blob/master/Algorithms/bubble-sort.md
