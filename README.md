@@ -16,29 +16,35 @@
 
 ### CS
 
-#### Algorithms
+- #### [Algorithms](https://github.com/dmsgk/TIL/tree/master/Algorithms)
 
-#### Data-Structure
+- #### [Data-Structure](https://github.com/dmsgk/TIL/tree/master/Data-Structure)
 
-#### Operating-System
+- #### [Operating-System](https://github.com/dmsgk/TIL/tree/master/Operating-System)
 
 
 
 ### Platforms
 
-#### iOS
+- #### [iOS](https://github.com/dmsgk/TIL/tree/master/iOS)
 
-#### Firebase
+  - ##### [Architecture-Patterns](https://github.com/dmsgk/TIL/tree/master/iOS/Architecture-Patterns)
+
+  - ##### [Swift](https://github.com/dmsgk/TIL/tree/master/iOS/Swift)
+
+- #### [Firebase](https://github.com/dmsgk/TIL/tree/master/Firebase)
 
 
 
 ### Languages
 
-#### Python3
+- #### [Python3](https://github.com/dmsgk/TIL/tree/master/Python3)
 
-#### Swift
-
-
+- #### [Swift](https://github.com/dmsgk/TIL/tree/master/iOS/Swift)
 
 
+
+### Etc
+
+- #### [Git](https://github.com/dmsgk/TIL/tree/master/Git)
 
