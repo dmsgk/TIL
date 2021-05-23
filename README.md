@@ -12,19 +12,31 @@
 
 
 
-## 분류(21.04.09 ver.)
+## 분류
 
-### Algorithms
+### CS
 
-### Data-Structure
+#### Algorithms
 
-### Database
+#### Data-Structure
 
-### iOS
+#### Operating-System
 
-### Operating-System
 
-### Python3
+
+### Platforms
+
+#### iOS
+
+#### Firebase
+
+
+
+### Languages
+
+#### Python3
+
+#### Swift
 
 
 
