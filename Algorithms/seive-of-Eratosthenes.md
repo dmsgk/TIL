@@ -37,17 +37,19 @@
 # 에라토스테네스의 체 구현하기 - n까지 숫자 중 소수 찾기
 import math
 
+def prime_num(n):
+    num_dict = {i:True for i in range(2,n+1)}
+    num = math.ceil(math.sqrt(n))   # n의 제곱근보다 크거나 같은 정수까지 탐색할 것
+
+    for i in range(2,num+1):
+        j = 2
+        while i*j <= n:
+            num_dict.pop(i*j, None)
+            j += 1
+    return list(num_dict.keys())
+
 n = int(input())
-num_dict = {i:True for i in range(2,n+1)}  # 2부터 n까지 수를 key로 갖는 딕셔너리 생성
-num = math.ceil(math.sqrt(n))   # n의 제곱근보다 크거나 같은 정수까지 탐색할 것
-
-for i in range(2,num+1):
-    j = 2
-    while i*j <= n:
-        num_dict.pop(i*j, None)
-        j += 1
-
-print(list(num_dict.keys()))  # n= 120일때, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113] 출력
+print(prime_num(n))  # n= 120일때, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113] 출력
 ```
 
 
