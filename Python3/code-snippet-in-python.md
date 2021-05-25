@@ -130,7 +130,9 @@ print(str)  # 1 2 3 4 출력
 sorted(student_tuples, key=lambda idx: idx[2])  # 2번째(0, 1, 2, ...에서) 인덱스 값을 기준으로 정렬
 ```
 
+### 3.2. 리스트 역순으로 생성  ex) [5,4,3,2,1]
 
+- `li = [i for i in range(n, 0, -1)]` : [n,n-1, ....,1] 생성
 
 ### 3.2. 집계를 위한 클래스 : `collections.Counter`
 
@@ -242,5 +244,22 @@ result = re.sub(pattern='\W', repl=' ', string=paragraph).lower().split()
 
 
 
+## 6. 원래의 객체를 변화시키지 않는 복사
 
+- muterble한 객체의 변수간 대입을 하면(a라는 리스트가 있는데 b=a로 할당) 같은 메모리 주소를 갖게 되어 복사를 한 객체가 바뀌면 원래 객체도 바뀌게 된다. 이를 방지하기 위해서는
+
+- **얕은 복사** 
+
+  - 리스트 슬라이싱 활용
+
+    ```
+    a = [1,2,3]
+    b = a[:]
+    ```
+
+    ⚠️그러나 mutable객체 안에 mutable객체인 경우에는 a의 값 변경시 b의 값도 변경될 수 있음
+
+- **깊은 복사**
+
+  - copy 모듈의 `deepcopy`메소드 활용하기
 
