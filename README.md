@@ -28,10 +28,6 @@
 
 - #### [iOS](https://github.com/dmsgk/TIL/tree/master/iOS)
 
-  - ##### [Architecture-Patterns](https://github.com/dmsgk/TIL/tree/master/iOS/Architecture-Patterns)
-
-  - ##### [Swift](https://github.com/dmsgk/TIL/tree/master/iOS/Swift)
-
 - #### [Firebase](https://github.com/dmsgk/TIL/tree/master/Firebase)
 
 
