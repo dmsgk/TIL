@@ -6,7 +6,12 @@
 
 ### 원격저장소에 올려둔 상태로 프로젝트 되돌리기
 
-- `git checkout .`
+- ```
+  git fetch --all
+  git reset --hard origin/main
+  ```
+
+- 아니면 `git checkout .`
 
 ### git add 되돌리기
 
@@ -17,7 +22,7 @@
 
 ### git push 되돌리기 (협업환경에서 권장하지 않음)
 
-## 
+
 
 ### Git 이미 push한 파일명, 폴더명 변경
 
@@ -27,3 +32,8 @@
 
 
 
+### 경로변경
+
+````
+git mv ./folder1/test.py. ./folder2/test.py
+````
