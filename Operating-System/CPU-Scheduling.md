@@ -1,5 +1,9 @@
 # Chap 5. CPU Scheduling
 
+> 주요내용 : CPU Scheduling의 필요성, Cpu Scheduler & Dispatcher, Scheduling Criteria, `FCFS`,` SJF`, `Priority Scheduling`, `RoundRobin`, `Multilevel Queue`,` Multilevel Feedback Queue`, `Multiple-Processor-Scheduling`, ` Real-Time Scheduling`
+
+
+
 ## CPU Scheduling의 필요성 - cpu burst time의 분포
 
 - Cpu-burst-time을 볼 때 cpu burst가 짧은, 즉 중간에 I/O가 많이 끼어드는**(I/O bound job**) 빈도가 매우 높았으며 cpu burst가 아주 긴(**cpu bound job**) 프로세스의 빈도가 낮았다.
