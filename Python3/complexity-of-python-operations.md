@@ -1,6 +1,6 @@
 # Complexity-of-python-opertations
 
- 
+> List, Set, Dict 주요 연산 시간복잡도
 
 ##  List
 
@@ -32,55 +32,49 @@
 
 ## Set
 
-```
-                               Complexity
-Operation     | Example      | Class         | Notes
---------------+--------------+---------------+-------------------------------
-Length        | len(s)       | O(1)	    		 |
-Add           | s.add(5)     | O(1)	 		 	   |
-Containment   | x in/not in s| O(1)	  		   | compare to list/tuple - O(N)
-Remove        | s.remove(..) | O(1)	    		 | compare to list/tuple - O(N)
-Discard       | s.discard(..)| O(1)	    		 | 
-Pop           | s.pop()      | O(1)	    		 | popped value "randomly" selected
-Clear         | s.clear()    | O(1)	    		 | similar to s = set()
 
-Construction  | set(...)     | O(len(...))   | depends on length of ... iterable
-check ==, !=  | s != t       | O(len(s))     | same as len(t); False in O(1) if the lengths are different
-<=/<          | s <= t       | O(len(s))     | issubset
->=/>          | s >= t       | O(len(t))     | issuperset s <= t == t >= s
-Union         | s | t        | O(len(s)+len(t))
-Intersection  | s & t        | O(len(s)+len(t))
-Difference    | s - t        | O(len(s)+len(t))
-Symmetric Diff| s ^ t        | O(len(s)+len(t))
+| Operation     | Example       | Class             | Notes  |
+| ------------- | ------------- | ---------------- | ----------------------------------- |
+| Length        | len(s)       | O(1)	    		 |
+| Add           | s.add(5)     | O(1)	 		 	   |
+| Containment          | x in/not in s           | O(1)	  		           | compare to list/tuple - O(N)|
+| Remove        | s.remove(..) | O(1)	    		 | compare to list/tuple - O(N) |
+| Discard       | s.discard(..)| O(1)	    		 |
+| Pop           | s.pop()      | O(1)	    		 | popped value "randomly" selected|
+| Clear         | s.clear()    | O(1)	    		 | similar to s = set()|
+| Construction  | set(...)     | O(len(...))   | depends on length of ... iterable|
+| check ==, !=  | s != t       | O(len(s))     | same as len(t); False in O(1) if the lengths are different|
+| <=/<          | s <= t       | O(len(s))     | issubset|
+| =/>          | s >= t       | O(len(t))     | issuperset s <= t == t >= s|
+| Union         | s | t        | O(len(s)+len(t))|
+| Intersection  | s & t        | O(len(s)+len(t))|
+| Difference    | s - t        | O(len(s)+len(t))|
+| Symmetric Diff| s ^ t        | O(len(s)+len(t))|
+| Iteration     | for v in s:  | O(N)          | Worst: no return/break in loop|
+| Copy          | s.copy()     | O(N)	    		 |
 
-Iteration     | for v in s:  | O(N)          | Worst: no return/break in loop
-Copy          | s.copy()     | O(N)	    		 |
-```
+---
+
 
 
 
 ## Dict
 
-```
-Dictionaries: dict and defaultdict
-                               Complexity
-Operation     | Example      | Class         | Notes
---------------+--------------+---------------+-------------------------------
-Index         | d[k]         | O(1)	     			|
-Store         | d[k] = v     | O(1)	     			|		
-Length        | len(d)       | O(1)	     			|
-Delete        | del d[k]     | O(1)	     			|
-get/setdefault| d.get(k)     | O(1)	     			|
-Pop           | d.pop(k)     | O(1)	     			| 
-Pop item      | d.popitem()  | O(1)	     			| popped item "randomly" selected
-Clear         | d.clear()    | O(1)	     			| similar to s = {} or = dict()
-View          | d.keys()     | O(1)	     			| same for d.values()
 
-Construction  | dict(...)    | O(len(...))   | depends # (key,value) 2-tuples
-
-Iteration     | for k in d:  | O(N)          | all forms: keys, values, items
-	      	      	       		     | Worst: no return/break in loop
-```
+Dictionaries : dict and defaultdict
+| Operation     | Example       | Class             | Notes  |
+| ------------- | ------------- | ---------------- | ----------------------------------- |
+| Index         | d[k]         | O(1)	     			||
+| Store         | d[k] = v     | O(1)	     			||
+| Length        | len(d)       | O(1)	     			||
+| Delete        | del d[k]     | O(1)	     			||
+| get/setdefault| d.get(k)     | O(1)	     			||
+| Pop           | d.pop(k)     | O(1)	     			||
+| Pop item      | d.popitem()  | O(1)	     			| popped item "randomly" selected|
+| Clear         | d.clear()    | O(1)	     			| similar to s = {} or = dict()|
+| View          | d.keys()     | O(1)	     			| same for d.values()|
+| Construction  | dict(...)    | O(len(...))   | depends # (key,value) 2-tuples|
+| Iteration     | for k in d:  | O(N)          | all forms: keys, values, items<br /> Worst: no return/break in loop |
 
 
 
