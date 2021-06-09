@@ -35,6 +35,33 @@
 
 
 
+## ScrollView 
+
+ScrollView
+
+- 스크롤 가능한 컨텐트 뷰를 제공해야 스크롤뷰가 제대로 작동
+- Content layout : 스크롤 가능한 사이즈. 스크롤되는 뷰를 담고있음
+- Frame layout : 부모뷰와 관련있는 스크롤뷰의 사이즈. 화면에 보여지는 부분
+
+### Autolayout 적용하기
+
+1. ScrollView 오토레이아웃 잡기
+
+2. ContentView 추가하기 
+
+   - ( UIView로 잡으면 편함 )
+
+   - 스크롤뷰의 Content Layout Guide에 ctrl누르고 드래그 하여 네 방향 모두 제약걸어줌.
+
+3. ContentView 사이즈 잡아주기
+
+   - 세로 스크롤을 원할 경우 
+     - contentView의 width를 Frame Layout Guide와 일치시킴
+     - contentView의 height를 원하는 만큼으로 설정함. (UI 요소가 변할 수 있으므로 스크롤에 제한이 생기지 않도록 priority를 낮춰준다.)
+   - 가로는 이와 반대로.
+
+
+
 ### References
 
 - https://www.youtube.com/watch?v=1McZ6ukrmFo&list=PLgOlaPUIbynpvYsyKTrH2bpVlOCHkz6OY
