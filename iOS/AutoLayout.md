@@ -29,9 +29,25 @@
 
 <img src="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png" alt="image: ../Art/attributes_2x.png" style="zoom:50%;" />
 
-- UIKit에서는 width, height보다 anchor를 우선순위로 둔다. 
+- UIKit에서는 width, height보다 anchor를 우선순위로 둔다. 우선순위 수정하고 싶으면 priority값을 수정할 것
 
 
+
+## Hugging, Compression Resistance
+
+### Hugging
+
+- 안으로 끌어당기기
+- 두 뷰 사이에 공간이 남아서 당겨지는 상황
+- Content hugging priority를 조정하여 어떤 것을 당길지 조정할 수 있다. 
+  - 우선순위가 높은 것이 우선순위 낮은 것을 당겨 늘어나게 된다. 
+
+### Compression Resistance
+
+- 밖으로 밀어내기
+- 두 뷰 사이에 공간이 부족해 줄어드는 상황
+- Content Compression Resistence Priority를 조정하여 어떤 것을 밀어낼지 조정할 수 있다. 
+  - 우선순위가 높은 것이 우선순위 낮은 것을 밀어 줄어들게 된다. 
 
 
 
@@ -66,3 +82,4 @@ ScrollView
 
 - https://www.youtube.com/watch?v=1McZ6ukrmFo&list=PLgOlaPUIbynpvYsyKTrH2bpVlOCHkz6OY
 - https://zeddios.tistory.com/380
+- https://corykim0829.github.io/ios/UIScrollView-with-storyboard/#
