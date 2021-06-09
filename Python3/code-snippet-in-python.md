@@ -79,7 +79,7 @@ print(str)  # 1 2 3 4 출력
 
 ## 2. 자주 사용하는 모듈
 
-- ### itertools
+- ### `itertools`
 
   - **순열(Permutations)**
 
@@ -113,7 +113,41 @@ print(str)  # 1 2 3 4 출력
   print(list(map("".join, p)))  # ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
   ```
 
+- ### `collections`
 
+  - ### 집계를 위한 클래스 : `collections.Counter`
+
+    어떤 원소 x가 주어진 시퀀스에 몇 번이나 등장하는지 세야할 때 사용
+
+    ```python
+    import collections
+    my_list = ["dance","classic", "pop", "classic", "classic", "pop"]
+    my_counter = collections.Counter(my_list)
+    my_counter   # Counter({'dance': 1, classic': 3, 'pop': 2})
+    
+    # 원소에 접근하기
+    my_counter['classic']  # 3
+    
+    # Counter.most_common은 가장 많이 나온 아이템부터 출력하는 메소드로, 최대힙과 같은 역할을 할 수 있다.
+    my_counter.most_common()   # [('classic', 3), ('pop', 2), ('dance', 1)]
+    
+    # 가장 많이 나온 튜플을 반환하기
+    my_counter.most_common(1)   # [('classic', 3)]  
+    
+    # 개수 빼기
+    my_counter.subtract(['dance'])  # 문자열 빼고 싶은 경우 리스트에 넣어서 빼기. Counter({'dance': 0, 'classic': 3, 'pop': 2})로 바뀜
+    
+    # 개수가 0 이하인 경우 삭제
+    my_counter += collections.Counter()  # Counter({'classic': 3, 'pop': 2})
+    
+    # 키값 반환
+    my_counter.most_common(1)[0][0]  # 'classic'
+    
+    # dict() 함수를 이용해 딕셔너리로 변환
+    dict(my_counter)   # {'classic': 3, 'pop': 2}
+    ```
+
+    
 
 ## 3. List
 
@@ -133,28 +167,6 @@ sorted(student_tuples, key=lambda idx: idx[2])  # 2번째(0, 1, 2, ...에서) �
 ### 3.2. 리스트 역순으로 생성  ex) [5,4,3,2,1]
 
 - `li = [i for i in range(n, 0, -1)]` : [n,n-1, ....,1] 생성
-
-### 3.2. 집계를 위한 클래스 : `collections.Counter`
-
-어떤 원소 x가 주어진 시퀀스에 몇 번이나 등장하는지 세야할 때 사용
-
-```python
-import collections
-my_list = ["classic", "pop", "classic", "classic", "pop"]
-my_counter = collections.Counter(my_list)
-my_counter   # Counter({'classic': 3, 'pop': 2})
-
-# 원소에 접근하기
-my_counter['classic']  # 3
-
-# 가장 많이 나온 튜플을 반환하기
-my_counter.most_common(1)   # [('classic', 3)]
-# 키값 반환
-my_counter.most_common(1)[0][0]  # 'classic'
-
-# dict() 함수를 이용해 딕셔너리로 변환
-dict(my_counter)   # {'classic': 3, 'pop': 2}
-```
 
 
 
