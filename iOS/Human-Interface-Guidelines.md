@@ -30,4 +30,9 @@ Beginning in **iOS 14.5** and iPadOS 14.5, you must use the [AppTrackingTranspar
 
 ## [Controls]
 
+### Switches
+
+- Use switches in **table rows** only
+- **Avoid adding labels to describe the values of a switch.**
+
 ## [Extensions]
