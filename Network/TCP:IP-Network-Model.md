@@ -1,6 +1,6 @@
 # TCP/IP Five-Layer Network Model
 
-![TCP:IP Five-Layer Network Model](/Users/johyeonyoon/Documents/TIL/Network/images/TCP:IP Five-Layer Network Model.png)
+![TCP-IP Network Model](https://images.velog.io/images/dmsgk/post/c8de5b39-7306-4b76-8e25-20d933923b2f/TCP:IP%20Five-Layer%20Network%20Model.png)
 
 ## Physical layer
 
