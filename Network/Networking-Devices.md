@@ -29,7 +29,19 @@ The primary device used to connect computers on a single network, usually referr
 ## Routers
 
 - A device that knows how to forward data between independent networks
-- Network layer device이다. (1:23부터 계속)
+- Network layer device이다.
+- Routers share data with each other via a protocol known as **BGP(Border Gateway Protocol)**
+  - 이는 가장 최적의 경로를 찾도록 해준다.
 
 ## Servers and Clients
+
+대부분의 node는 완전히 서버이거나 클라이언트라고 할 수 없다. 서버와 클라이언트 역할을 함꼐 수행한다. 
+
+### Server 
+
+- 데이터를 요청한 곳에 데이터를 제공하는 역할을 하는 부분
+
+### Client
+
+- 데이터를 요청하고 데이터를 받는 부분
 
