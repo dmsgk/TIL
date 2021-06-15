@@ -175,12 +175,114 @@
 
 ## 4. Transport layer
 
+- Allows traffic to be directed to specific network applications
 - Sorts out whicth client and server programs are supposed to get that data
 - TCP/UDP
+
+---
+
+### Dissection of a TCP Segment
+
+- TCP segment
+  - Made up of a TCP header and a data section
+
+![TCP segment](http://fiberbit.com.tw/wp-content/uploads/2013/12/TCP-segment.png)
+
+- Destination port 
+  -  the port of the server the traffic is intended for
+- Source port
+  -  A high- numbered port chosen from a special section of prots known as ephemeral ports
+- Sequence number
+  - A 32-bit number that's used to keep track of where in a sequence of TCP segments this one is expected to be
+- Acknowledgement
+  - the number of the next expected segment
+- Data offset field
+  - A 4-bit number that communicates how long the TCP header for this segment is 
+- TCP window
+  - Specifies the range of sequence numbers that might be sent before an acknowledgement is required
+- TCP checksum
+  - IP와 이더넷 레벨의 checksum과 유사한 기능을 한다.
+- Urgent pointer field
+  - Used in conjunction with one of the TCP control flags to point out particular segments that might be more important than others
+
+### TCP Controll Flags and the Three-way Handshake
+
+#### Control Flags
+
+- URG(urgent)
+  - a value of one here indicates that the segment is considered urgent and that the urgent pointer field has more data about this
+- ACK(acknowledged)
+  - a value of one in this field means that the acknowledgement number field should be examined
+- PSH(push)
+  - The transmitting device wants the receiving device to push currently-buffered data to the application on the receiving end as soon as possible
+  - 작은 용량의 정보를 전송하고자 할 때 쓰인다.
+- RST(reset)
+  - One of the sides in a TCP connections hasn't been able to properly recover from a series of missing or malformed segments
+- SYN(synchronize)
+  - It's used when first eestablishing a TCP connection and makes sure the receving end knows to examine the sequence number field
+- FIN(finish)
+  - When this flag is set to 1, it means the transmitting computer doesn't have anymore data to send and the connection can be closed
+
+#### Handshake
+
+- A way for two devices to ensure that they're speaking the same protocol and will be able to understand each other
+- Three-way handshake
+  -  전송 제어 프로토콜(**TCP**)에서 통신을 하는 장치간 서로 연결이 잘 되어있는지 확인하는 과정
+  - ![three-way handshake](https://images.velog.io/images/dmsgk/post/0d322523-6d4f-4a35-8bda-f2231abbb4a3/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-06-15%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.20.00.png)
+- Four-way handshake
+  - Once one of the devices involved with the TCP connection is ready to close the connection, something known as a four way handshake happens. 
+  - ![Four-way handshake](https://images.velog.io/images/dmsgk/post/d0ad75c3-0b18-4c1a-b8e0-e2c31ae0983e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-06-15%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.20.38.png)
+
+### TCP Socket States
+
+- Socket
+  - The instantiation of an end-point in a potential TCP connection
+  - Instantiation
+    - The actual implementation of something defined elsewhere
+- LISTEN
+  - A TCP socket is ready and listening for incoming connections
+- SYN_SENT
+  - A synchronization request has been sent, but the connection hasn't been established yet
+- SYN-RECEIVED
+  - A socket previously in a LISTEN state has received a synchoronization request and sent a SYN/ACK back
+- ESTABLISHED
+  - The TCP connection is in working order and both sides are free to send each other data
+- FIN_WAIT
+  - A FIN has been sent, but the corresponding ACK from the other end hasn't been received yet
+- CLOSE_WAIT
+  - The connection has been closed at the TCP layer, but that the application that opened the socket hasn't released its hold on the socket yet
+- CLOSED
+  - The connection has been fully terminated and that no further communication is possible
+
+### Connection-oriented and Connectionless Protocols
+
+- Connection - oriented protocol
+  - Establishes a connection, and uses this to ensure that all data has been properly trasmitted
+
+### Firewalls
+
+- Firewall
+  - A device that blocks traffic that meets certain criteria
+  - 
 
 ## 5. Application layer
 
 - 유저가 필요한 interface, protocol을 제공하는 계층
+- Allows applications to communicate in a way they understand
+
+---
+
+### The Application Layer and the OSI Model
+
+#### OSI Model
+
+- 7 layers (physical, data link, network, transport, session, presentation, application)
+- Session layer
+  - Facilitating the communication between actual applications and the transport layer
+- Presentation layer
+  - Responsible for making sure that the unencapsulated application layer data is able to be understood by the application in question
+
+
 
 
 
