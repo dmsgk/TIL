@@ -1,5 +1,10 @@
 # Name Resolution
 
+### Name Resolution Tools
+
+- nslookup
+- 
+
 ## DNS(Domain Name System)
 
 - A global and highly distributed network service that resolves strings of letters into IP address for you (도메인 이름을 ip주소로 바꿔준다.)
@@ -84,3 +89,9 @@ DNS can technically support up to 127 levels of domain in total for a single ful
       - These let DNS resolvers ask for an IP and get the FQDN associated with it returned
     - Pointer resouce record(PTR)
       - Resolves an IP to a name
+
+
+
+## Public DNS Servers
+
+- Name servers specifically set up so that anyone can use them, for free
