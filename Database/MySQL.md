@@ -1,5 +1,23 @@
 # MySQL
 
+## SQL 순서
+
+```
+1.  FROM
+2.  ON
+3.  JOIN
+4.  WHERE
+5.  GROUP BY
+6.  WITH CUBE or WITH ROLLUP
+7.  HAVING
+8.  SELECT
+9.  DISTINCT
+10. ORDER BY
+11. TOP
+```
+
+
+
 ## LIMIT
 
 - 몇 개의 데이터를 보여줄지 결정한다. 
@@ -16,7 +34,7 @@
   SELECT Salary AS SecondHighestSalary
   FROM Employee
   ORDER BY Salary DESC
-  LIMIT 2,1;   # 3번째로 높은 봉급 하나를 보여준다.
+  LIMIT 2,1;   # 3번째(0,1,2)로 높은 봉급 하나를 보여준다.
   ```
 
 - ㅇㅇ
@@ -47,4 +65,6 @@ LEFT JOIN Address ON Person.PersonId = Address.PersonId;
 
 
 
-   
+## Having
+
+- count는 where과 어울리지 못하므로, having을 이용해 표현해 count관련 조건을 처리할 수 있다. 
