@@ -58,6 +58,139 @@ MVVM에서는 View의 output과 ViewModel 간의 바인딩이 필요하다. 바�
 
 >  A general rule of thumb is to never import `UIKit` in your **view models**.
 
+---
+
+#### Boxing
+
+[MVVM Binding Pattern](https://www.youtube.com/watch?v=iI0LabCYZJo) 강좌를 보면서 정리. 
+
+데이터바인딩을 boxing 방식으로 하기 위해서는 다음과 같은 것이 필요함.
+
+- obserable
+
+- - 값이 변화했을 경우 변화를 관칠하고(listener) 알려 ui업데이트가 가능하게 한다. 
+  - `bind` 함수
+    - listener를 파라미터로 받아 value가 바뀔 경우 업데이트된 value를 리턴.
+
+- model
+- Viewmodelss
+- controller(view)
+
+```swift
+//
+//  ViewController.swift
+//  MVVMBindings
+//
+//  Created by Johyeon Yoon on 2021/07/05.
+//
+// 데이터바인딩 예시코드. 
+import UIKit
+
+// MARK: -Obserable
+
+
+// 변화가 생겼을 경우, 변화를 관찰하고 알려 UI업데이트가 가능하도록 한다.
+// 제네릭 타입을 갖는 T를 파라미터로 갖는 observable 클래스 생성
+class Observable<T> {
+    var value: T? {
+        // 값이 갱신된 직후에 호출되어 값을 업데이트해줌
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    init(_ value: T? ) {
+        self.value = value
+    }
+    
+    private var listener: ((T?) -> Void)?
+    
+    //바인딩하는 함수
+    func bind(_ listener: @escaping (T?) -> Void) {
+        listener(value)
+        self.listener = listener
+        
+    }
+}
+
+// MARK: -Model
+
+// codable로 name 변수만 데이터로 받아올 것임
+struct User: Codable {
+    let name: String
+}
+
+// MARK: -ViewModel
+struct UserListViewModel {
+    var users : Observable<[UserTableViewCellViewModel]> = Observable([])
+}
+struct UserTableViewCellViewModel {
+    let name: String
+}
+
+// MARK: -Controller(View)
+
+class ViewController: UIViewController, UITableViewDataSource {
+      
+    private let tableView : UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    // 뷰모델 선언
+    private var viewModel = UserListViewModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.dataSource = self
+        
+        viewModel.users.bind { _ in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        fetchData()
+    }
+    
+    // Table
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.users.value?.count ?? 0
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = viewModel.users.value?[indexPath.row].name
+        return cell
+        
+    }
+    
+    // 데이터 디코딩.
+    func fetchData(){
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else { return  }
+            do {
+                let userModels = try JSONDecoder().decode([User].self, from: data)
+                self.viewModel.users.value = userModels.compactMap({
+                    UserTableViewCellViewModel(name: $0.name)
+                })
+            }
+            catch {
+                
+            }
+        }
+        task.resume()
+    }
+
+}
+
+```
+
 
 
 ### References
