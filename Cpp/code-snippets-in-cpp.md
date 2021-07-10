@@ -69,3 +69,28 @@ int main(void){
 }
 ```
 
+### 동적할당
+
+`new` 와 `delete` 키워드를 사용해 동적할당과 해제가 가능함
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int *p = new int[0];    // int형 변수 [0]
+    
+    for (int i = 0; i < 9; i++) {  // 9개 동적할당
+        p[i] = i+1;
+    }
+    
+    for (int i = 0; i < 9; i++) {
+        cout << p[i] << endl;
+    }
+    
+    delete[] p;  // 동적할당 해제
+    return 0;
+    
+}
+```
+
