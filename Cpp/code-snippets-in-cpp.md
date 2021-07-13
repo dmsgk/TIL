@@ -49,6 +49,20 @@ int main ()
 
 
 
+### cin, cout 최적화
+
+아래와 같은 구문을 활용하면 cin와 cout의 속도를 향상시킬 수 있음
+
+```cpp
+ios::sync_with_stdio(0);  // c와 c++ 입출력의 synchronization을 false로 변경
+cin.tie(0); 
+cout.tie(0);  // cin과 cout의 tie 해제
+```
+
+
+
+
+
 ### 1. 배열 입력받기
 
 ```cpp
@@ -117,6 +131,12 @@ vector<int>v;  // int형 자료를 저장하는 벡터v 생성
 vector<int>v(3); // 0이 3개 저장된 벡터 v 생성.
 vector<int>v(3, 8); // 8이 3개 저장된 벡터 v를 생성.
 ```
+
+
+
+## for문
+
+`for (초기식; 조건식; 변화식) {명령문}`
 
 
 
