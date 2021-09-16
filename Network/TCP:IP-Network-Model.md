@@ -38,6 +38,8 @@
 ## 2. Data link layer
 
 - is responsible for defining a common way of interpreting these signals so network devices can communicate
+- 물리 계층으로 송수신되는 정보를 관리하여 안전하게 전달되도록 도와주는 역할
+- Mac 주소를 통해 통신한다. 프레임에 Mac 주소를 부여하고 에러검출, 재전송, 흐름제어를 진행한다.
 - 다른 layer가 Physical layer나 하드웨어가 어떻게 사용되는지 알 필요없이 작동하도록 한다.
 - 예) 이더넷 
 
@@ -109,6 +111,7 @@
 
 - Allows different networks to communicate with each other through devices known as routers
 - 데이터가 네트워크들 간에 전달되도록 하는 계층
+- 라우터를 통해 이동할 경로를 선택하여 IP 주소를 지정하고, 해당 경로에 따라 패킷을 전달해준다.
 - 예) IP, Internet Protocol
 - Internetwork 
   - A collection of networks connected together through routers, the most famous of these being the Internet
@@ -176,6 +179,7 @@
 ## 4. Transport layer
 
 - Allows traffic to be directed to specific network applications
+- TCP와 UDP 프로토콜을 통해 통신을 활성화한다. 포트를 열어두고, 프로그램들이 전송을 할 수 있도록 제공해준다.
 - Sorts out whicth client and server programs are supposed to get that data
 - TCP/UDP
 
@@ -279,8 +283,11 @@
 - 7 layers (physical, data link, network, transport, session, presentation, application)
 - Session layer
   - Facilitating the communication between actual applications and the transport layer
+  - 데이터가 통신하기 위한 논리적 연결을 담당한다. TCP/IP 세션을 만들고 없애는 책임을 지니고 있다.
 - Presentation layer
   - Responsible for making sure that the unencapsulated application layer data is able to be understood by the application in question
+  - 데이터 표현에 대한 독립성을 제공하고 암호화하는 역할을 담당한다.
+  - 파일 인코딩, 명령어를 포장, 압축, 암호화한다.
 
 
 
