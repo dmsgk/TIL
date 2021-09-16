@@ -1,11 +1,11 @@
-## Queue
+## 1.0. Queue
 
 - FIFO(First in, first out)의 자료구조
 - Queue의 종류
   - 선형 큐
   - 원형 큐(Circular queue)
 
-## 선형 큐
+## 1.1. 선형 큐
 
 - BFS 구현에 사용된다.
 - 캐싱 처리에 구현
@@ -16,19 +16,19 @@
 
 데이터를 넣어주는 기능을 수행. 마지막 데이터의 위치가 변하므로 **rear**이 **-1**만큼 이동한다.
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/152a69e7-c10a-4a2a-a57b-5c518691f92b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210413T014037Z&X-Amz-Expires=86400&X-Amz-Signature=cf100404279705466b67d1eae08043347726ea43d44c99b356f2ba30eda8fa72&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" alt="img" style="zoom:67%;" />
+![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/152a69e7-c10a-4a2a-a57b-5c518691f92b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210916%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210916T023631Z&X-Amz-Expires=86400&X-Amz-Signature=5e0a73438723b32c29e0ebe32189fd94a03288e498caf7ae6c2d7d0c239efb9e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
 ### Dequeue
 
 데이터를 내보내는 기능을 수행. 맨 앞에 있는 데이터가 바뀌므로 **front**가 +1만큼 이동한다.
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c3259ed3-9775-4e43-b6d0-5ed1069fb9fe/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210413T014131Z&X-Amz-Expires=86400&X-Amz-Signature=05e5ec748d254ac941fad0cef8ba167d9335e70f0f80d371616edc10616c0579&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" alt="img" style="zoom:67%;" />
+![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c3259ed3-9775-4e43-b6d0-5ed1069fb9fe/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210916%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210916T023707Z&X-Amz-Expires=86400&X-Amz-Signature=36cac39d62649c974d0309a7afc6c5a1ad6d3f49de479ce4aee2b7ee731d9451&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
 ### 선형 큐의 단점
 
 - 일반적인 선형 큐는 rear이 마지막 index를 가르키면서 데이터의 삽입이 이루어진다. 문제는 rear이 배열의 마지막 인덱스를 가르키게 되면 앞에 남아있는 (삽입 중간에 Dequeue 되어 비어있는 공간) 공간을 활용 할 수 없게 된다. 이 방식을 해결하기 위해서는 Dequeue를 할때 front를 고정 시킨 채 뒤에 남아있는 데이터를 앞으로 한 칸씩 당기거나 원형 큐를 사용해야 한다.
 
-  ![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c3ab6b0a-19ed-4660-87e0-d7c3174aa440/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210413T014229Z&X-Amz-Expires=86400&X-Amz-Signature=fa44ea3a52862a0c90d3e1b8bd086f538625bf2c5898709753b0c55c61798c60&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+  ![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c3ab6b0a-19ed-4660-87e0-d7c3174aa440/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210916%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210916T023733Z&X-Amz-Expires=86400&X-Amz-Signature=a1ba0a4aa8497b9ddaa593968a5e7aa2079be9695c489bf7efe34e9aad37c3e9&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
 ### 파이썬에서 큐 사용하기 - `from collections import deque`
 
@@ -46,7 +46,7 @@ queue.popleft() # 2
 
 
 
-## 원형 큐
+## 1.2. 원형 큐
 
 큐 앞의 공간을 활용할 수 있어, 기존 선형 큐의 단점을 보완할 수 있다.
 
@@ -202,6 +202,57 @@ class CircularDeque(CircularQueue):
         return self.items[self.rear]
 ```
 
+
+
+## 1.3. 연결리스트 큐
+
+원형 큐의 단점 : 메모리 공간은 잘 활용하지만, 배열로 구현되어 있기 때문에 큐의 크기가 제한된다.
+
+이를 개선한 것이 '연결리스트 큐'
+
+**연결리스트 큐는 크기가 제한이 없고 삽입, 삭제가 편리**
+
+### enqueue 구현
+
+```java
+public void enqueue(E item) {
+    Node oldlast = tail; // 기존의 tail 임시 저장
+    tail = new Node; // 새로운 tail 생성
+    tail.item = item;
+    tail.next = null;
+    if(isEmpty()) head = tail; // 큐가 비어있으면 head와 tail 모두 같은 노드 가리킴
+    else oldlast.next = tail; // 비어있지 않으면 기존 tail의 next = 새로운 tail로 설정
+}
+```
+
+> 데이터 추가는 끝 부분인 tail에 한다.기존의 tail는 보관하고, 새로운 tail 생성큐가 비었으면 head = tail를 통해 둘이 같은 노드를 가리키도록 한다.큐가 비어있지 않으면, 기존 tail의 next에 새로만든 tail를 설정해준다.
+
+### dequeue 구현
+
+```java
+public T dequeue() {
+    // 비어있으면
+    if(isEmpty()) {
+        tail = head;
+        return null;
+    }
+    // 비어있지 않으면
+    else {
+        T item = head.item; // 빼낼 현재 front 값 저장
+        head = head.next; // front를 다음 노드로 설정
+        return item;
+    }
+}
+```
+
+> 데이터는 head로부터 꺼낸다. (가장 먼저 들어온 것부터 빼야하므로)head의 데이터를 미리 저장해둔다.기존의 head를 그 다음 노드의 head로 설정한다.저장해둔 데이터를 return 해서 값을 빼온다.
+
+이처럼 삽입은 tail, 제거는 head로 하면서 삽입/삭제를 스택처럼 O(1)에 가능하도록 구현이 가능하다.
+
+### 
+
+
+
 ### References
 
 - https://lktprogrammer.tistory.com/47?category=676210
@@ -209,6 +260,8 @@ class CircularDeque(CircularQueue):
 - https://mailmail.tistory.com/33
 
 - https://velog.io/@changyeonyoo/자료구조python-원형큐-덱-CircularQueue-CircularDeque-구현
+
+- 
 
   
 
