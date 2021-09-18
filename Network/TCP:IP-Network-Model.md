@@ -274,21 +274,6 @@
 - 유저가 필요한 interface, protocol을 제공하는 계층
 - Allows applications to communicate in a way they understand
 
----
-
-### The Application Layer and the OSI Model
-
-#### OSI Model
-
-- 7 layers (physical, data link, network, transport, session, presentation, application)
-- Session layer
-  - Facilitating the communication between actual applications and the transport layer
-  - 데이터가 통신하기 위한 논리적 연결을 담당한다. TCP/IP 세션을 만들고 없애는 책임을 지니고 있다.
-- Presentation layer
-  - Responsible for making sure that the unencapsulated application layer data is able to be understood by the application in question
-  - 데이터 표현에 대한 독립성을 제공하고 암호화하는 역할을 담당한다.
-  - 파일 인코딩, 명령어를 포장, 압축, 암호화한다.
-
 
 
 
