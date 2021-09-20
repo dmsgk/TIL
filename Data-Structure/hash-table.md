@@ -37,9 +37,17 @@
 
 ### 충돌문제 해결
 
-- **개별 체이닝** : 연결리스트로 노드를 계속 추가해나가는 방식 (제한 없이 계속 연결 가능, but 메모리 문제)
-
+- **Separate Chaining(개별 체이닝)** 
+  - 연결리스트로 노드를 계속 추가해나가는 방식 (제한 없이 계속 연결 가능, but 메모리 문제)
+  - Tree를 이용하는 방식(Red-Black Tree)
 - **Open Addressing** : 해시 함수로 얻은 주소가 아닌 다른 주소에 데이터를 저장할 수 있도록 허용 (해당 키 값에 저장되어있으면 다음 주소에 저장)
+  - 최악의 경우에는 비어있는 버킷을 찾지 못하고 탐색을 시작한 위치까지 되돌아올 수 있다.
+  - 여러 가지 방법 중 3가지.
+    - **Linear probing** : 순차적으로 탐색하며 비어있는 버킷을 찾을 때까지 계속 진행된다.
+    - **Quadratic probing** : 2차 함수를 이용해 탐색할 위치를 찾는다.
+    - **Double hashing probing** : 하나의 해시 함수에서 충돌이 발생하면 2차해시함수를 이용해 새로운 주소를 할당한다. 위 2가지 방법에 비해 많은 연산량을 요구.
+
+> 참고 ) 일반적으로 Open Addressing 은 Separate Chaining 보다 느리다. Open Addressing 의 경우 해시 버킷을 채운 밀도가 높아질수록 Worst Case 발생 빈도가 더 높아지기 때문이다. 반면 Separate Chaining 방식의 경우 해시 충돌이 잘 발생하지 않도록 보조 해시 함수를 통해 조정할 수 있다면 Worst Case 에 가까워 지는 빈도를 줄일 수 있다. 
 
 - **선형 탐사** : 정해진 고정 폭으로 옮겨 해시값의 중복을 피함
 
@@ -60,3 +68,4 @@
 
 - 박상길, 2020, 파이썬 알고리즘 인터뷰, 책만.
 - https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Data%20Structure/Hash.md
+- https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/DataStructure#array-vs-linked-list
